@@ -28,8 +28,8 @@ services:
     volumes:
       - .:/app
     environment:
-      - DB_HOST=localhost
-      - DB_PORT=1433
-      - DB_USERNAME=sa
-      - DB_PASSWORD=Password1
-      - DB_NAME=FlagServiceDB
+      - Database__Server=localhost
+      - Database__Port=1433
+      - Database__Username=sa
+      - Database__Password=Password1
+      - Database__Name=FlagServiceDB

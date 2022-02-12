@@ -17,6 +17,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Options\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FlagSense.FlagService.Domain\FlagSense.FlagService.Domain.csproj" />
   </ItemGroup>
 
 </Project>
