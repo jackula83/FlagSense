@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
+WORKDIR /app
+
+
+# Copy everything
+COPY . ./
+
+# Restore dependencies
+RUN dotnet restore FlagSense.sln
+
+# Run tests
+RUN echo "Running tests..."
+RUN dotnet test
+
+# Run tests on run
+ENTRYPOINT [ "dotnet", "test" ]
