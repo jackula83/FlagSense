@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
 WORKDIR /app
 
 
@@ -8,13 +9,5 @@ COPY . ./
 # Restore dependencies
 RUN dotnet restore FlagSense.sln
 
-# Build
-RUN echo "Building FlagService API..."
-RUN dotnet publish ./FlagSense.FlagService.Api -c Debug -o out
-
-# Build runtime image
-RUN echo "Building FlagService Runtime..."
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
-WORKDIR /app
-COPY --from=build /app/out .
-ENTRYPOINT [ "dotnet", "FlagSense.FlagService.Api.dll" ]
+# Run on watch
+ENTRYPOINT ["dotnet", "watch", "run", "--project", "FlagSense.FlagService.Api/FlagSense.FlagService.Api.csproj"]
