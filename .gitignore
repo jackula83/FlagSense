@@ -29,3 +29,6 @@ secrets.yml
 
 # don't commit database backup
 *.bak
+
+# sql volume mounts
+sql
