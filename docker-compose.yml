@@ -1,0 +1,35 @@
+version: '3'
+services:
+  sqlserver:
+    image: 'mcr.microsoft.com/mssql/server:2019-latest'
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Password1
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    volumes:
+      - ./sql/data:/var/opt/mssql/data
+      - ./sql/log:/var/opt/mssql/log
+      - ./sql/secrets:/var/opt/mssql/secrets
+  unit-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+  flag-service-api:
+    depends_on:
+      - sqlserver
+      - unit-tests
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=1433
+      - DB_USERNAME=sa
+      - DB_PASSWORD=Password1
+      - DB_NAME=FlagServiceDB

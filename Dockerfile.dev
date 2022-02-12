@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as build
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+WORKDIR /app
+
+
+# Copy everything
+COPY . ./
+
+# Restore dependencies
+RUN dotnet restore FlagSense.sln
+
+# Run on watch
+ENTRYPOINT ["dotnet", "watch", "run", "--project", "FlagSense.FlagService.Api/FlagSense.FlagService.Api.csproj"]
