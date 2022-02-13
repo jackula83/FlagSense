@@ -1,7 +1,8 @@
-﻿using FlagSense.FlagService.Domain.Models.Abstracts;
+﻿using FlagSense.FlagService.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FlagSense.FlagService.Domain.Models
+namespace FlagSense.FlagService.Domain.Entities
 {
     /// <summary>
     /// Encapsulates user information for use in flag rules
@@ -10,6 +11,9 @@ namespace FlagSense.FlagService.Domain.Models
     {
         public static string AnonymousPropertyKey = "IsAnonymous";
         private static bool DefaultAnonymousSetting = true;
+
+        public int EnvironmentId { get; set; }
+        public Env? Environment { get; set; }
 
         public List<UserProperty> Properties { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString())};
 
@@ -37,6 +41,18 @@ namespace FlagSense.FlagService.Domain.Models
                 this.Properties.RemoveAll(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
                 this.Properties.Add(new(AnonymousPropertyKey, value.ToString()));
             }
+        }
+
+        public override void SetupEntity(ModelBuilder builder)
+        {
+            var entity = builder.Entity<User>();
+            entity
+                .HasMany(e => e.Properties)
+                .WithOne(e => e.User);
+            entity
+                .HasOne(e => e.Environment)
+                .WithMany(v => v.Users)
+                .HasForeignKey(nameof(EnvironmentId));
         }
     }
 }

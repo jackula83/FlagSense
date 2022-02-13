@@ -1,8 +1,9 @@
-﻿using FlagSense.FlagService.Domain.Interfaces;
-using FlagSense.FlagService.Domain.Models.Abstracts;
+﻿using FlagSense.FlagService.Core.Models;
+using FlagSense.FlagService.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
-namespace FlagSense.FlagService.Domain.Models
+namespace FlagSense.FlagService.Domain.Entities
 {
     public enum FlagRuleType : int
     {
@@ -14,8 +15,10 @@ namespace FlagSense.FlagService.Domain.Models
 
     public class Rule : FsEntity, IUserEvaluator
     {
+        public int RuleGroupId { get; set; }
+        public RuleGroup? RuleGroup { get; set; }
         public string Key { get; set; } = string.Empty;
-        public List<string> Conditions { get; set; } = new();
+        public List<Condition> Conditions { get; set; } = new();
         public FlagRuleType RuleType { get; set; } = FlagRuleType.INVALID;
 
         public bool Eval(User user)
@@ -30,9 +33,9 @@ namespace FlagSense.FlagService.Domain.Models
             
             return this.RuleType switch
             {
-                FlagRuleType.ONE_OF => this.Conditions.Any(x => string.Compare(x, userProperty.Value, true) == 0),
-                FlagRuleType.STARTS_WITH => this.Conditions.Any(x => userProperty.Value.StartsWith(x)),
-                FlagRuleType.REGEX => this.Conditions.Any(x => IsRegexValid(x) && Regex.IsMatch(userProperty.Value, x, RegexOptions.IgnoreCase)),
+                FlagRuleType.ONE_OF => this.Conditions.Any(x => string.Compare(x.Value, userProperty.Value, true) == 0),
+                FlagRuleType.STARTS_WITH => this.Conditions.Any(x => userProperty.Value.StartsWith(x.Value)),
+                FlagRuleType.REGEX => this.Conditions.Any(x => IsRegexValid(x.Value) && Regex.IsMatch(userProperty.Value, x.Value, RegexOptions.IgnoreCase)),
                 _ => false
             };
         }
@@ -48,6 +51,15 @@ namespace FlagSense.FlagService.Domain.Models
                 return false;
             }
             return true;
+        }
+
+        public override void SetupEntity(ModelBuilder builder)
+        {
+            var entity = builder.Entity<Rule>();
+            entity
+                .HasOne(x => x.RuleGroup)
+                .WithMany(g => g.FlagRules)
+                .HasForeignKey(nameof(RuleGroupId));
         }
     }
 }
