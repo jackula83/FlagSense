@@ -11,6 +11,7 @@ namespace FlagSense.FlagService.Domain.Entities
         public Rule? Rule { get; set; }
 
         [Required]
+        [StringLength(0x10000)]
         public string Value { get; set; } = string.Empty;
 
         public static implicit operator Condition(string value)

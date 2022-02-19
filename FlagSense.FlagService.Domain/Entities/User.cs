@@ -12,9 +12,6 @@ namespace FlagSense.FlagService.Domain.Entities
         public static string AnonymousPropertyKey = "IsAnonymous";
         private static bool DefaultAnonymousSetting = true;
 
-        public int EnvironmentId { get; set; }
-        public Env? Environment { get; set; }
-
         public List<UserProperty> Properties { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString())};
 
         /// <summary>
@@ -49,10 +46,6 @@ namespace FlagSense.FlagService.Domain.Entities
             entity
                 .HasMany(e => e.Properties)
                 .WithOne(e => e.User);
-            entity
-                .HasOne(e => e.Environment)
-                .WithMany(v => v.Users)
-                .HasForeignKey(nameof(EnvironmentId));
         }
     }
 }

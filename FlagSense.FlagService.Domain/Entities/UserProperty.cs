@@ -1,6 +1,7 @@
 ﻿using FlagSense.FlagService.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.ComponentModel.DataAnnotations;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
@@ -8,7 +9,9 @@ namespace FlagSense.FlagService.Domain.Entities
     {
         public int UserId { get; set; }
         public User? User { get; set; }
+        [StringLength(0x200)]
         public string Key { get; set; } = string.Empty;
+        [MaxLength]
         public string Value { get; set; } = string.Empty;
 
         public UserProperty() { }

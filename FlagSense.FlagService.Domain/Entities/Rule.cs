@@ -1,6 +1,7 @@
 ﻿using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace FlagSense.FlagService.Domain.Entities
@@ -17,6 +18,8 @@ namespace FlagSense.FlagService.Domain.Entities
     {
         public int RuleGroupId { get; set; }
         public RuleGroup? RuleGroup { get; set; }
+
+        [StringLength(0x200)]
         public string Key { get; set; } = string.Empty;
         public List<Condition> Conditions { get; set; } = new();
         public FlagRuleType RuleType { get; set; } = FlagRuleType.INVALID;

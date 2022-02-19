@@ -26,6 +26,7 @@ namespace FlagSense.FlagService.Domain.Data
             base.Setup<TEntityType>(builder);
 
             var model = Activator.CreateInstance<TEntityType>() as FsEntity;
+            model!.Setup(builder);
         }
     }
 }
