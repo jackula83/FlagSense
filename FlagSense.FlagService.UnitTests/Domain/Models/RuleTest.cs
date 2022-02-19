@@ -1,5 +1,5 @@
 ﻿using Common.Domain.Core.Extensions;
-using FlagSense.FlagService.Domain.Models;
+using FlagSense.FlagService.Domain.Entities;
 using System.Collections.Generic;
 using Xunit;
 
@@ -29,7 +29,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] { "a", "b", "c" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] { "a", "b", "c" })),
                 true
             };
             yield return new object[]
@@ -39,7 +39,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] { "b", "c" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] { "b", "c" })),
                 false
             };
             yield return new object[]
@@ -49,7 +49,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
                     .Tap(x => x.Key = "country")
-                    .Tap(x => x.Conditions.AddRange(new [] { "a", "b", "c" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] { "a", "b", "c" })),
                 false
             };
         }
@@ -63,7 +63,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] { "melon", "jack" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] { "melon", "jack" })),
                 true
             };
             yield return new object[]
@@ -73,7 +73,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] { "melon" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] { "melon" })),
                 false
             };
             yield return new object[]
@@ -83,7 +83,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] { "ula" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] { "ula" })),
                 false
             };
         }
@@ -97,7 +97,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] {  @"([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] {  @"([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)" })),
                 true
             };
             yield return new object[]
@@ -107,7 +107,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] {  @"([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] {  @"([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)" })),
                 false
             };
             yield return new object[]
@@ -117,7 +117,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] {  @"[" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] {  @"[" })),
                 false
             };
             yield return new object[]
@@ -127,7 +127,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
-                    .Tap(x => x.Conditions.AddRange(new [] {  @"^[a-z]$" })),
+                    .Tap(x => x.Conditions.AddRange(new Condition[] {  @"^[a-z]$" })),
                 false
             };
         }

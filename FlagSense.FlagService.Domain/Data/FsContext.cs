@@ -1,12 +1,32 @@
 ﻿using Common.Domain.Core.Data;
+using FlagSense.FlagService.Core.Models;
+using FlagSense.FlagService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlagSense.FlagService.Domain.Data
 {
     public class FsContext : FxSqlServerDbContext
     {
+        public DbSet<Env> Environments { get; set; }
+        public DbSet<Segment> Segments { get; set; }
+        public DbSet<Flag> Flags { get; set; }
+        public DbSet<Rule> Rules { get; set; }
+        public DbSet<RuleGroup> RuleGroups { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserProperty> UserProperties { get; set; }
+
+#pragma warning disable 8618
         public FsContext(DbContextOptions options) : base(options)
         {
+        }
+#pragma warning restore 8618
+
+        protected override void Setup<TEntityType>(ModelBuilder builder)
+        {
+            base.Setup<TEntityType>(builder);
+
+            var model = Activator.CreateInstance<TEntityType>() as FsEntity;
+            model!.Setup(builder);
         }
     }
 }

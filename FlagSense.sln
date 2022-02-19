@@ -23,9 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{79E174D8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagSense.FlagService.UnitTests", "FlagSense.FlagService.UnitTests\FlagSense.FlagService.UnitTests.csproj", "{3F997AD1-2881-42B3-AA15-E3784CEC3B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagSense.FlagService.Application", "FlagSense.FlagService.Application\FlagSense.FlagService.Application.csproj", "{22175D16-C35D-4A9C-9BA5-BE261DF6A94E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagSense.FlagService.Application", "FlagSense.FlagService.Application\FlagSense.FlagService.Application.csproj", "{22175D16-C35D-4A9C-9BA5-BE261DF6A94E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagSense.FlagService.Api", "FlagSense.FlagService.Api\FlagSense.FlagService.Api.csproj", "{3A2C9F24-65F3-40C0-A11F-8F4FA32690B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagSense.FlagService.Api", "FlagSense.FlagService.Api\FlagSense.FlagService.Api.csproj", "{3A2C9F24-65F3-40C0-A11F-8F4FA32690B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagSense.FlagService.Core", "FlagSense.FlagService.Core\FlagSense.FlagService.Core.csproj", "{52D51FF0-1648-4391-8FCA-4A9278C40F33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{3A2C9F24-65F3-40C0-A11F-8F4FA32690B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A2C9F24-65F3-40C0-A11F-8F4FA32690B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A2C9F24-65F3-40C0-A11F-8F4FA32690B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52D51FF0-1648-4391-8FCA-4A9278C40F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52D51FF0-1648-4391-8FCA-4A9278C40F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52D51FF0-1648-4391-8FCA-4A9278C40F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52D51FF0-1648-4391-8FCA-4A9278C40F33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{3F997AD1-2881-42B3-AA15-E3784CEC3B2B} = {79E174D8-C018-4075-A142-E9CA60FC2436}
 		{22175D16-C35D-4A9C-9BA5-BE261DF6A94E} = {8A2F0FF1-2A92-40EF-93D9-27627C2218ED}
 		{3A2C9F24-65F3-40C0-A11F-8F4FA32690B1} = {8A2F0FF1-2A92-40EF-93D9-27627C2218ED}
+		{52D51FF0-1648-4391-8FCA-4A9278C40F33} = {8A2F0FF1-2A92-40EF-93D9-27627C2218ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F491E607-578F-460E-9038-372FBD4A44D0}
