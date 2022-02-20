@@ -6,6 +6,13 @@ using System.Data;
 
 namespace FlagSense.FlagService.Domain.Data
 {
+    /// <summary>
+    /// Audit is perhaps better as its own microservice, however the intention is for the open source
+    /// edition to be self-contained, and commercialised version to use an AuditService to keep track of entity
+    /// history across all microservices in the domain, it would also require setting up a message queue.
+    /// To move this function to the message queue all it needs is a new interface added, although the tests
+    /// will need to change
+    /// </summary>
     public class AuditOperations
     {
         public const string AuditSchema = "audit";
@@ -17,16 +24,6 @@ namespace FlagSense.FlagService.Domain.Data
             _rawSqlOperations = rawSqlOperations;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="before"></param>
-        /// <param name="after"></param>
-        /// <returns></returns>
-        /// <remarks>Audit is perhaps better as its own microservice, however the intention is for the open source
-        /// edition to be self-contained, and commercialised version to use an AuditService to keep track of entity
-        /// history across all microservices in the domain, it would also require setting up a message queue</remarks>
         public async Task AddAuditEntry<TEntity>(TEntity? before, TEntity after)
             where TEntity : FsEntity
         {
