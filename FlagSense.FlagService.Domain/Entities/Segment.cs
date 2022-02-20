@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Segment : FsEntity, IRuleTarget, IColourCoding
+    public class Segment : FsEntity, IRuleTarget, IColourCoding, IAuditable
     {
         public int EnvironmentId { get; set; }
         public Env? Environment { get; set; }

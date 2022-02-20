@@ -5,12 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FlagSense.FlagService.Domain.Data
 {
+    /// <summary>
+    /// Context for SqlServer, use Context Factory to support different database providers
+    /// </summary>
     public class FsContext : FxSqlServerDbContext
     {
         public DbSet<Env> Environments { get; set; }
         public DbSet<Segment> Segments { get; set; }
         public DbSet<Flag> Flags { get; set; }
-        public DbSet<Rule> Rules { get; set; }
+        public DbSet<Entities.Rule> Rules { get; set; }
         public DbSet<RuleGroup> RuleGroups { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserProperty> UserProperties { get; set; }

@@ -11,11 +11,10 @@ namespace FlagSense.FlagService.Core.Models
         {
             var entity = builder.Entity(this.GetType());
             entity
-                .HasAlternateKey(nameof(this.CreatedBy), nameof(this.UpdatedBy))
-                .HasName($"idx_{this.GetType().Name}_AuditBy");
-            entity
-                .HasAlternateKey(nameof(this.CreatedAt), nameof(this.UpdatedAt))
-                .HasName($"idx_{this.GetType().Name}_AuditAt");
+                .HasIndex(nameof(this.Uuid))
+                .IncludeProperties(nameof(this.Id));
+            entity.HasIndex(nameof(this.CreatedBy), nameof(this.CreatedAt));
+            entity.HasIndex(nameof(this.UpdatedBy), nameof(this.UpdatedAt));
 
             this.SetupEntity(builder);
         }

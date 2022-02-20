@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Env : FsEntity, IColourCoding
+    public class Env : FsEntity, IColourCoding, IAuditable
     {
         public static int DefaultColour = Color.OrangeRed.ToArgb();
         public int ColourCoding { get; set; } = DefaultColour;
