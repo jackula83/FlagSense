@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FlagSense.FlagService.Domain\FlagSense.FlagService.Domain.csproj" />
+    <ProjectReference Include="..\Shared\Common\Common.Domain.Tests\Common.Domain.Tests.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,42 +13,42 @@ namespace FlagSense.FlagService.Domain.Data
        where TContext : FsContext
        where TEntity : FsEntity
     {
-        protected FsRepository(TContext context) : base(context)
+        private readonly AuditOperations _auditOperations;
+
+        protected FsRepository(TContext context, AuditOperations auditOperations) 
+            : base(context)
         {
+            _auditOperations = auditOperations;
         }
 
-        public override async Task<int> Add(TEntity entity)
+        public override async Task<TEntity> Add(TEntity entity)
         {
-            var id = await base.Add(entity);
+            var savedEntity = await base.Add(entity);
 
             // write audit entries
             if (entity as IAuditable != null)
             {
-                var savedEntity = await this.Get(id);
-                await _context.AddAuditEntry(default, savedEntity!);
+                await _auditOperations.AddAuditEntry(default, savedEntity!);
             }
-            return id;
+            return savedEntity;
         }
 
-        public override async Task<bool> Update(TEntity entity)
+        public override async Task<TEntity?> Update(TEntity entity)
         {
             var oldEntity = await this.Get(entity.Id);
             if (oldEntity == default)
-                return false;
+                return default;
 
-            var success = await base.Update(entity);
+            var savedEntity = await base.Update(entity);
 
             // write audit entries
-            if (!success)
-                return false;
+            if (savedEntity == default)
+                return default;
 
             if (entity as IAuditable != null)
-            {
-                var savedEntity = await this.Get(entity.Id);
-                await _context.AddAuditEntry(oldEntity, savedEntity!);
-            }
+                await _auditOperations.AddAuditEntry(oldEntity, savedEntity!);
 
-            return success;
+            return savedEntity;
         }
     }
 }
