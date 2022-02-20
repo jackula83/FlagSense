@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Shared\Common\Common.Domain.Core\Common.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Design\" />
-  </ItemGroup>
-
 </Project>

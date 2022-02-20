@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Flag : FsEntity, IRuleTarget
+    public class Flag : FsEntity, IRuleTarget, IAuditable
     {
         public int? SegmentId { get; set; }
         public Segment? Segment { get; set; }
