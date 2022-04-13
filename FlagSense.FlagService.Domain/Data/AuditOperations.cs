@@ -38,42 +38,6 @@ namespace FlagSense.FlagService.Domain.Data
 
             if (before != default)
                 values[nameof(Audit.Old)] = before.Serialise();
-
-            await _rawSqlOperations.ExecuteRawInsert<TEntity>(AuditSchema, values);
-        }
-
-        /// <summary>
-        /// Get the latest audit entry
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<Audit?> GetAuditEntry<TEntity>(int id)
-            where TEntity : FsEntity
-        {
-            var whereValues = new Dictionary<string, object>()
-            {
-                {nameof(Audit.RefId), id}
-            };
-            var recentRecord = (await _rawSqlOperations.ExecuteRawSelect<TEntity>(AuditSchema, whereValues, true)).FirstOrDefault();
-            if (recentRecord == default)
-                return default;
-
-            return this.ReadAudit(recentRecord);
-        }
-
-        public async Task<List<Audit>> EnumerateAuditEntry<TEntity>(int id)
-            where TEntity : FsEntity
-        {
-            var whereValues = new Dictionary<string, object>()
-            {
-                {nameof(Audit.RefId), id}
-            };
-            var records = (await _rawSqlOperations.ExecuteRawSelect<TEntity>(AuditSchema, whereValues, false));
-            var results = new List<Audit>();
-
-            records.ForEach(x => results.Add(this.ReadAudit(x)));
-            return results;
         }
 
         private Audit ReadAudit(IDataRecord record)
