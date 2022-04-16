@@ -1,4 +1,4 @@
-﻿using Common.Domain.Core.Data;
+﻿using Common.Infra.RDBMS;
 using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ namespace FlagSense.FlagService.Domain.Data
     /// <summary>
     /// Context for SqlServer, use Context Factory to support different database providers
     /// </summary>
-    public class FsContext : FxSqlServerDbContext
+    public class FsDbContext : FxSqlServerDbContext
     {
         public DbSet<Env> Environments { get; set; }
         public DbSet<Segment> Segments { get; set; }
@@ -19,7 +19,7 @@ namespace FlagSense.FlagService.Domain.Data
         public DbSet<UserProperty> UserProperties { get; set; }
 
 #pragma warning disable 8618
-        public FsContext(DbContextOptions options) : base(options)
+        public FsDbContext(DbContextOptions options) : base(options)
         {
         }
 #pragma warning restore 8618

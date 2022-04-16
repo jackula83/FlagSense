@@ -1,21 +1,18 @@
 ﻿using Common.Domain.Core.Data;
 using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FlagSense.FlagService.Domain.Data
 {
-    public abstract class FsRepository<TContext, TEntity> : FxEntityRepository<TContext, TEntity>
-       where TContext : FsContext
+    public abstract class FsRepository<TEntity> : FxEntityRepository<FsDbContext, TEntity>
        where TEntity : FsEntity
     {
+        /// <summary>
+        /// Move AuditOperations to Shared lib, auditing should occur in <see cref="FxEntityRepository{TContext, TEntity}"/>
+        /// </summary>
         private readonly AuditOperations _auditOperations;
 
-        protected FsRepository(TContext context, AuditOperations auditOperations) 
+        protected FsRepository(FsDbContext context, AuditOperations auditOperations) 
             : base(context)
         {
             _auditOperations = auditOperations;

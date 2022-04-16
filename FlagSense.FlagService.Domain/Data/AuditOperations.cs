@@ -1,55 +1,43 @@
-﻿using FlagSense.FlagService.Core.Extensions;
+﻿using Common.Domain.Core.Interfaces;
+using FlagSense.FlagService.Core.Events;
+using FlagSense.FlagService.Core.Extensions;
 using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Entities;
 using FlagSense.FlagService.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace FlagSense.FlagService.Domain.Data
 {
-    /// <summary>
-    /// Audit is perhaps better as its own microservice, however the intention is for the open source
-    /// edition to be self-contained, and commercialised version to use an AuditService to keep track of entity
-    /// history across all microservices in the domain, it would also require setting up a message queue.
-    /// To move this function to the message queue all it needs is a new interface added, although the tests
-    /// will need to change
-    /// </summary>
     public class AuditOperations
     {
-        public const string AuditSchema = "audit";
+        private readonly IEventQueue _eventQueue;
+        private readonly FsDbContext _dbContext;
 
-        private readonly IRawSqlOperations _rawSqlOperations;
-
-        public AuditOperations(IRawSqlOperations rawSqlOperations)
+        public AuditOperations(IEventQueue eventQueue, FsDbContext dbContext)
         {
-            _rawSqlOperations = rawSqlOperations;
+            _eventQueue = eventQueue;
+            _dbContext = dbContext;
         }
 
         public async Task AddAuditEntry<TEntity>(TEntity? before, TEntity after)
             where TEntity : FsEntity
         {
-            var values = new Dictionary<string, object>()
+            var (schema, table) = this.GetTableProperties<TEntity>();
+            var auditEvent = new EntityAuditEvent<TEntity>(table, schema)
             {
-                {nameof(Audit.Uuid), Guid.NewGuid().ToString()},
-                {nameof(Audit.RefId), after.Id },
-                {nameof(Audit.New), after.Serialise()},
-                {nameof(Audit.CreatedAt), DateTime.UtcNow},
-                {nameof(Audit.CreatedBy), after.CreatedBy! }
+                OldEntity = before,
+                NewEntity = after
             };
 
-            if (before != default)
-                values[nameof(Audit.Old)] = before.Serialise();
+            await _eventQueue.Publish(auditEvent);
         }
 
-        private Audit ReadAudit(IDataRecord record)
-            => new()
-            {
-                Id = (int)record[nameof(Audit.Id)],
-                Uuid = (Guid)record[nameof(Audit.Uuid)],
-                RefId = (int)record[nameof(Audit.RefId)],
-                Old = record[nameof(Audit.Old)]?.ToString(),
-                New = record[nameof(Audit.New)].ToString()!,
-                CreatedAt = (DateTime)record[nameof(Audit.CreatedAt)],
-                CreatedBy = record[nameof(Audit.CreatedBy)]?.ToString()
-            };
+        private (string, string) GetTableProperties<TEntity>()
+            where TEntity : FsEntity
+        {
+            var entityType = _dbContext.Model.FindEntityType(typeof(TEntity));
+            return (entityType?.GetSchema(), entityType?.GetTableName())!;
+        }
     }
 }

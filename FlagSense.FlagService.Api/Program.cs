@@ -17,7 +17,7 @@ var connectionString = $@"
     Database={databaseSection[nameof(DatabaseOptions.Name)]};
     User Id={databaseSection[nameof(DatabaseOptions.Username)]};
     Password={databaseSection[nameof(DatabaseOptions.Password)]};";
-builder.Services.AddDbContext<FsContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
+builder.Services.AddDbContext<FsDbContext>(options => options.UseSqlServer(connectionString), ServiceLifetime.Scoped);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
