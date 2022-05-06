@@ -1,18 +1,23 @@
-﻿using Common.Domain.Core.Extensions;
-using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Domain.Interfaces;
-using FlagSense.FlagService.Domain.Models;
+﻿using FlagSense.FlagService.Core.Extensions;
+using FlagService.Domain.Aggregates;
+using FlagService.Domain.Aggregates.Environment;
+using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Interfaces;
+using FlagService.Domain.Models;
 using FlagService.Infra.Data.Abstracts;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Segment : FsDataObject, IRuleTarget, IColourCoding, IAuditable
+    public class Segment : FsDataObject, IRuleTarget, IColourCoding, IAggregateRoot
     {
+        #region EF Relationships
         public int EnvironmentId { get; set; }
         public Env? Environment { get; set; }
+        #endregion
 
         [StringLength(0x200)]
         public string Name { get; set; } = string.Empty;
@@ -24,7 +29,7 @@ namespace FlagSense.FlagService.Domain.Entities
 
         public List<Flag> Flags { get; set; } = new();
         public bool IsEnabled { get; set; } = false;
-        public FlagValue DefaultServe { get; set; } = new();
+        public ServeValue DefaultServeValue { get; set; } = new();
         public List<RuleGroup> RuleGroups { get; set; } = new();
 
         public override void SetupEntity(ModelBuilder builder)
@@ -37,10 +42,10 @@ namespace FlagSense.FlagService.Domain.Entities
                 .WithMany(v => v.Segments)
                 .HasForeignKey(nameof(EnvironmentId));
             entity
-                .Property(e => e.DefaultServe)
+                .Property(e => e.DefaultServeValue)
                 .HasConversion(
                     v => v.Serialise(),
-                    v => v.Deserialise<FlagValue>()!);
+                    v => v.Deserialise<ServeValue>()!);
         }
     }
 }

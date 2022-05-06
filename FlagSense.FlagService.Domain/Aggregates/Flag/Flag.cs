@@ -1,16 +1,20 @@
 ﻿using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Domain.Interfaces;
-using FlagSense.FlagService.Domain.Models;
+using FlagSense.FlagService.Domain.Entities;
+using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Models;
 using FlagService.Infra.Data.Abstracts;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates
 {
-    public class Flag : FsDataObject, IRuleTarget, IAuditable
+    public class Flag : FsDataObject, IRuleTarget, IAggregateRoot
     {
+        #region EF Relationships
         public int? SegmentId { get; set; }
         public Segment? Segment { get; set; }
+        #endregion
 
         [StringLength(0x200)]
         public string Name { get; set; } = string.Empty;
@@ -20,7 +24,7 @@ namespace FlagSense.FlagService.Domain.Entities
         public string Alias { get; set; } = string.Empty;
 
         public bool IsEnabled { get; set; } = false;
-        public FlagValue DefaultServe { get; set; } = new();
+        public ServeValue DefaultServeValue { get; set; } = new();
         public List<RuleGroup> RuleGroups { get; set; } = new();
 
         public override void SetupEntity(ModelBuilder builder)
@@ -33,10 +37,10 @@ namespace FlagSense.FlagService.Domain.Entities
                 .WithMany(s => s.Flags)
                 .HasForeignKey(nameof(SegmentId));
             entity
-                .Property(e => e.DefaultServe)
+                .Property(e => e.DefaultServeValue)
                 .HasConversion(
                     v => v.Serialise(),
-                    v => v.Deserialise<FlagValue>()!);
+                    v => v.Deserialise<ServeValue>()!);
             entity
                 .HasAlternateKey(e => new { e.Name })
                 .HasName("idx_Environment_FlagName");

@@ -1,5 +1,6 @@
 ﻿using Common.Domain.Core.Extensions;
 using FlagSense.FlagService.Domain.Entities;
+using FlagService.Domain.Aggregates.RuleGroup;
 using Framework2.Core.Extensions;
 using System.Collections.Generic;
 using Xunit;
@@ -15,7 +16,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         public void Eval_ProvidedRule_TrueWhenConditionMatches(User user, Rule rule, bool expectedResult)
         {
             // act
-            var result = rule.Eval(user);
+            var result = rule.EvalulateUserFlags(user);
 
             // assert
             Assert.Equal(expectedResult, result);

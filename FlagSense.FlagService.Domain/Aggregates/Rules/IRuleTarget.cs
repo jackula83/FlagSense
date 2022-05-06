@@ -1,12 +1,6 @@
-﻿using FlagSense.FlagService.Domain.Entities;
-using FlagSense.FlagService.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FlagService.Domain.Models;
 
-namespace FlagSense.FlagService.Domain.Interfaces
+namespace FlagService.Domain.Aggregates.Rules
 {
     public interface IRuleTarget
     {
@@ -18,7 +12,7 @@ namespace FlagSense.FlagService.Domain.Interfaces
         /// <summary>
         /// The default serve value when flag is ON and evaluation does not match any rules
         /// </summary>
-        FlagValue DefaultServe { get; set; }
+        ServeValue DefaultServeValue { get; set; }
 
         /// <summary>
         /// List of rules associated with this flag

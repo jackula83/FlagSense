@@ -1,4 +1,5 @@
 ﻿using FlagService.Infra.Data.Abstracts;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,7 +8,7 @@ namespace FlagSense.FlagService.Domain.Entities
     /// <summary>
     /// Encapsulates user information for use in flag rules
     /// </summary>
-    public class User : FsDataObject
+    public class User : FsDataObject, IAggregateRoot
     {
         public static string AnonymousPropertyKey = "IsAnonymous";
         private static bool DefaultAnonymousSetting = true;

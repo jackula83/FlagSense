@@ -1,9 +1,9 @@
 ﻿using FlagSense.FlagService.Domain.Entities;
 
-namespace FlagSense.FlagService.Domain.Interfaces
+namespace FlagService.Domain.Aggregates.Rules
 {
     public interface IUserEvaluator
     {
-        bool Eval(User user);
+        bool EvalulateUserFlags(User user);
     }
 }

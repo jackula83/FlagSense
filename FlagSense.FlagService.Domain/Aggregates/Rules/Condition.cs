@@ -1,14 +1,16 @@
-﻿using Common.Domain.Core.Extensions;
-using FlagService.Infra.Data.Abstracts;
+﻿using FlagService.Infra.Data.Abstracts;
+using Framework2.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates.Rules
 {
     public class Condition : FsDataObject
     {
+        #region EF Relationships
         public int RuleId { get; set; }
         public Rule? Rule { get; set; }
+        #endregion
 
         [Required]
         [StringLength(0x10000)]

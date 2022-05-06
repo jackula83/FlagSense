@@ -1,4 +1,5 @@
 ﻿using FlagSense.FlagService.Domain.Entities;
+using FlagService.Domain.Aggregates.RuleGroup;
 using Framework2.Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,10 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         {
             // arrange
             var user = new User().Tap(x => x.Properties.Add(new("username", "jackula@nospam.com")));
-            var ruleGroup = new RuleGroup().Tap(x => x.FlagRules.AddRange(GetTrueRules()));
+            var ruleGroup = new RuleGroup().Tap(x => x.Rules.AddRange(GetTrueRules()));
 
             // act
-            var result = ruleGroup.Eval(user);
+            var result = ruleGroup.EvalulateUserFlags(user);
 
             // assert
             Assert.True(result);
@@ -28,10 +29,10 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         {
             // arrange
             var user = new User().Tap(x => x.Properties.Add(new("username", "jackula@nospam.com")));
-            var ruleGroup = new RuleGroup().Tap(x => x.FlagRules.AddRange(GetFalseRules()));
+            var ruleGroup = new RuleGroup().Tap(x => x.Rules.AddRange(GetFalseRules()));
 
             // act
-            var result = ruleGroup.Eval(user);
+            var result = ruleGroup.EvalulateUserFlags(user);
 
             // assert
             Assert.False(result);
@@ -43,11 +44,11 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             // arrange
             var user = new User().Tap(x => x.Properties.Add(new("username", "jackula@nospam.com")));
             var ruleGroup = new RuleGroup()
-                .Tap(x => x.FlagRules.AddRange(GetTrueRules()))
-                .Tap(x => x.FlagRules.Add(GetFalseRules().First()));
+                .Tap(x => x.Rules.AddRange(GetTrueRules()))
+                .Tap(x => x.Rules.Add(GetFalseRules().First()));
 
             // act
-            var result = ruleGroup.Eval(user);
+            var result = ruleGroup.EvalulateUserFlags(user);
 
             // assert
             Assert.False(result);

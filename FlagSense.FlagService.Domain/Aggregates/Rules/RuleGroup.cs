@@ -1,25 +1,29 @@
 ﻿using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Domain.Interfaces;
-using FlagSense.FlagService.Domain.Models;
+using FlagSense.FlagService.Domain.Entities;
+using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Models;
 using FlagService.Infra.Data.Abstracts;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates
 {
-    public class RuleGroup : FsDataObject, IUserEvaluator
+    public class RuleGroup : FsDataObject, IUserEvaluator, IAggregateRoot
     {
+        #region EF Relationships
         public int? SegmentId { get; set; }
         public Segment? Segment { get; set; }
 
         public int? FlagId { get; set; }
         public Flag? Flag { get; set; }
+        #endregion
 
-        public List<Rule> FlagRules { get; set; } = new();
+        public List<Rule> Rules { get; set; } = new();
 
-        public FlagValue ServeValue { get; set; } = new();
+        public ServeValue ServeValue { get; set; } = new();
 
-        public bool Eval(User user)
-            => this.FlagRules.All(x => x.Eval(user));
+        public bool EvalulateUserFlags(User user)
+            => Rules.All(x => x.EvalulateUserFlags(user));
 
         public override void SetupEntity(ModelBuilder builder)
         {
@@ -28,7 +32,7 @@ namespace FlagSense.FlagService.Domain.Entities
                 .Property(e => e.ServeValue)
                 .HasConversion(
                     v => v.Serialise(),
-                    v => v.Deserialise<FlagValue>()!);
+                    v => v.Deserialise<ServeValue>()!);
             entity
                 .HasOne(e => e.Flag)
                 .WithMany(f => f.RuleGroups)

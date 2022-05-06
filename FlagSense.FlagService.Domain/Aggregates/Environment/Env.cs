@@ -1,12 +1,14 @@
-﻿using FlagSense.FlagService.Domain.Interfaces;
+﻿using FlagSense.FlagService.Domain.Entities;
+using FlagService.Domain.Interfaces;
 using FlagService.Infra.Data.Abstracts;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates.Environment
 {
-    public class Env : FsDataObject, IColourCoding, IAuditable
+    public class Env : FsDataObject, IColourCoding, IAggregateRoot
     {
         public static int DefaultColour = Color.OrangeRed.ToArgb();
         public int ColourCoding { get; set; } = DefaultColour;

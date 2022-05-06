@@ -1,6 +1,9 @@
 using FlagSense.FlagService.Api.Options;
 using FlagSense.FlagService.Domain.Data;
 using FlagSense.FlagService.Domain.Entities;
+using FlagService.Domain.Aggregates.Environment;
+using FlagService.Domain.Aggregates.Flag;
+using FlagService.Domain.Aggregates.RuleGroup;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
