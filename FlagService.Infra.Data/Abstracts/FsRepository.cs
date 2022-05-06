@@ -4,7 +4,7 @@ using FlagSense.FlagService.Domain.Interfaces;
 
 namespace FlagSense.FlagService.Domain.Data
 {
-    public abstract class FsRepository<TEntity> : FxEntityRepository<FsDbContext, TEntity>
+    public abstract class FsRepository<TEntity> : FxEntityRepository<FsSqlServerContext, TEntity>
        where TEntity : FsEntity
     {
         /// <summary>
@@ -12,7 +12,7 @@ namespace FlagSense.FlagService.Domain.Data
         /// </summary>
         private readonly AuditOperations _auditOperations;
 
-        protected FsRepository(FsDbContext context, AuditOperations auditOperations) 
+        protected FsRepository(FsSqlServerContext context, AuditOperations auditOperations) 
             : base(context)
         {
             _auditOperations = auditOperations;

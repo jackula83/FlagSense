@@ -1,9 +1,8 @@
-﻿using Common.Domain.Core.Models;
-using Newtonsoft.Json;
+﻿using Framework2.Core.Models;
 
 namespace FlagSense.FlagService.Core.Models
 {
-    public class FsModel : FxModel
+    public abstract class FsModel : FxModel
     {
     }
 }

@@ -1,5 +1,5 @@
-﻿using FlagSense.FlagService.Core.Models;
-using FlagSense.FlagService.Domain.Interfaces;
+﻿using FlagSense.FlagService.Domain.Interfaces;
+using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
@@ -14,7 +14,7 @@ namespace FlagSense.FlagService.Domain.Entities
         REGEX
     }
 
-    public class Rule : FsEntity, IUserEvaluator
+    public class Rule : FsDataObject, IUserEvaluator
     {
         public int RuleGroupId { get; set; }
         public RuleGroup? RuleGroup { get; set; }

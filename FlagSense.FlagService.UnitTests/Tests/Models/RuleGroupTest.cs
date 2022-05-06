@@ -1,5 +1,5 @@
-﻿using Common.Domain.Core.Extensions;
-using FlagSense.FlagService.Domain.Entities;
+﻿using FlagSense.FlagService.Domain.Entities;
+using Framework2.Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;

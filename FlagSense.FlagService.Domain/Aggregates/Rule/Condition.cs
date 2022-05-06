@@ -1,11 +1,11 @@
 ﻿using Common.Domain.Core.Extensions;
-using FlagSense.FlagService.Core.Models;
+using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Condition : FsEntity
+    public class Condition : FsDataObject
     {
         public int RuleId { get; set; }
         public Rule? Rule { get; set; }

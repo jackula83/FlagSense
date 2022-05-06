@@ -1,15 +1,15 @@
 ﻿using Common.Domain.Core.Extensions;
 using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Interfaces;
 using FlagSense.FlagService.Domain.Models;
+using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Segment : FsEntity, IRuleTarget, IColourCoding, IAuditable
+    public class Segment : FsDataObject, IRuleTarget, IColourCoding, IAuditable
     {
         public int EnvironmentId { get; set; }
         public Env? Environment { get; set; }

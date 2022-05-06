@@ -1,13 +1,13 @@
 ﻿using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Interfaces;
 using FlagSense.FlagService.Domain.Models;
+using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class Flag : FsEntity, IRuleTarget, IAuditable
+    public class Flag : FsDataObject, IRuleTarget, IAuditable
     {
         public int? SegmentId { get; set; }
         public Segment? Segment { get; set; }

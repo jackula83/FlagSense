@@ -1,8 +1,8 @@
-﻿using Common.Domain.Core.Models;
+﻿using FlagSense.FlagService.Core.Models;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Core.Auditing
 {
-    public class Audit : FxModel
+    public class Audit : FsModel
     {
         public int Id { get; set; }
         public Guid Uuid { get; set; }

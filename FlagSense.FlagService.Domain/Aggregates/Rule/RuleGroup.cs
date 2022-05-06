@@ -1,12 +1,12 @@
 ﻿using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Core.Models;
 using FlagSense.FlagService.Domain.Interfaces;
 using FlagSense.FlagService.Domain.Models;
+using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class RuleGroup : FsEntity, IUserEvaluator
+    public class RuleGroup : FsDataObject, IUserEvaluator
     {
         public int? SegmentId { get; set; }
         public Segment? Segment { get; set; }

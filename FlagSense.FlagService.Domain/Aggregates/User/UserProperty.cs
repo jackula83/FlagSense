@@ -1,11 +1,11 @@
-﻿using FlagSense.FlagService.Core.Models;
+﻿using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlagSense.FlagService.Domain.Entities
 {
-    public class UserProperty : FsEntity
+    public class UserProperty : FsDataObject
     {
         public int UserId { get; set; }
         public User? User { get; set; }

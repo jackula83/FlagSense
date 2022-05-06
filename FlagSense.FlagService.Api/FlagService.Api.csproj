@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FlagSense.FlagService.Domain\FlagSense.FlagService.Domain.csproj" />
+    <ProjectReference Include="..\FlagSense.FlagService.Domain\FlagService.Domain.csproj" />
   </ItemGroup>
 
 </Project>
