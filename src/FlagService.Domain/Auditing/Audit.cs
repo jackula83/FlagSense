@@ -1,6 +1,6 @@
 ﻿using FlagService.Core.Models;
 
-namespace FlagService.Core.Auditing
+namespace FlagService.Domain.Auditing
 {
     public class Audit : FsModel
     {

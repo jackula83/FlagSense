@@ -1,12 +1,8 @@
 ﻿using Framework2.Infra.Data.Entity;
 using Framework2.Infra.MQ.Core;
 
-namespace FlagService.Core.Auditing
+namespace FlagService.Domain.Auditing
 {
-    /// <summary>
-    /// Move this event to Observability service shared lib
-    /// </summary>
-    /// <typeparam name="TAggregateRoot"></typeparam>
     public class EntityAuditEvent<TAggregateRoot> : FxEvent
         where TAggregateRoot : IAggregateRoot
     {

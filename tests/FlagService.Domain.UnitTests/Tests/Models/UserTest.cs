@@ -21,10 +21,12 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         public void IsAnonymous_SetToProvidedValue_IsProvidedValue(bool isAnonymous)
         {
             // arrange
-            var user = new User();
+            var user = new User
+            {
 
-            // act
-            user.IsAnonymous = isAnonymous;
+                // act
+                IsAnonymous = isAnonymous
+            };
 
             // assert
             Assert.Equal(isAnonymous, user.IsAnonymous);

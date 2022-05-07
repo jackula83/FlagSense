@@ -1,4 +1,4 @@
-﻿using FlagService.Infra.Data.Abstracts;
+﻿using FlagService.Core.Models;
 using Framework2.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;

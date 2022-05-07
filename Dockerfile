@@ -10,11 +10,11 @@ RUN dotnet restore FlagSense.sln
 
 # Build
 RUN echo "Building FlagService API..."
-RUN dotnet publish ./FlagSense.FlagService.Api -c Release -o out
+RUN dotnet publish ./FlagService.Api -c Release -o out
 
 # Build runtime image
 RUN echo "Building FlagService Runtime..."
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build /app/out .
-ENTRYPOINT [ "dotnet", "FlagSense.FlagService.Api.dll" ]
+ENTRYPOINT [ "dotnet", "FlagService.Api.dll" ]

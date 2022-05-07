@@ -1,7 +1,7 @@
 ﻿using FlagService.Core.Extensions;
+using FlagService.Core.Models;
 using FlagService.Domain.Aggregates.Rules;
 using FlagService.Domain.Models;
-using FlagService.Infra.Data.Abstracts;
 using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;

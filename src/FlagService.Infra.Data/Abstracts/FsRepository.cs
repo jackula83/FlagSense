@@ -1,4 +1,5 @@
-﻿using FlagService.Core.Auditing;
+﻿using FlagService.Domain.Auditing;
+using FlagService.Domain.Contexts;
 using Framework2.Infra.Data.Entity;
 using Framework2.Infra.Data.Repository;
 

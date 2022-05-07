@@ -16,13 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Options\" />
+    <Folder Include="Application\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FlagService.Domain\FlagService.Domain.csproj" />
     <ProjectReference Include="..\FlagService.Infra.Data\FlagService.Infra.Data.csproj" />
+    <ProjectReference Include="..\Shared\Common\src\Framework2.Application\Framework2.Application.csproj" />
   </ItemGroup>
 
 </Project>
