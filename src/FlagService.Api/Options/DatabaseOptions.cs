@@ -1,6 +1,4 @@
-﻿using Framework2.Application.Core.Env;
-
-namespace FlagService.Api.Options
+﻿namespace FlagService.Api.Options
 {
     internal class DatabaseOptions
     {
@@ -18,19 +16,19 @@ namespace FlagService.Api.Options
         {
             var section = configuration.GetSection(OptionName);
 
-            var serverEnvWithFallback = section[nameof(Server)];
-            var nameEnvWithFallback = section[nameof(Name)];
-            var portEnvWithFallback = section[nameof(Port)];
-            var usernameEnvWithFallback = section[nameof(Username)];
-            var passwordEnvWithFallback = section[nameof(Password)];
+            var serverEnvValue = section[nameof(Server)];
+            var nameEnvValue = section[nameof(Name)];
+            var portEnvValue = section[nameof(Port)];
+            var usernameEnvValue = section[nameof(Username)];
+            var passwordEnvValue = section[nameof(Password)];
 
             return new()
             {
-                Server = Environment.GetEnvironmentVariable(serverEnvWithFallback) ?? serverEnvWithFallback,
-                Name = Environment.GetEnvironmentVariable(nameEnvWithFallback) ?? nameEnvWithFallback,
-                Username = Environment.GetEnvironmentVariable(usernameEnvWithFallback) ?? usernameEnvWithFallback,
-                Password = Environment.GetEnvironmentVariable(passwordEnvWithFallback) ?? passwordEnvWithFallback,
-                Port = int.Parse(Environment.GetEnvironmentVariable(portEnvWithFallback) ?? portEnvWithFallback),
+                Server = serverEnvValue,
+                Name = nameEnvValue,
+                Username = usernameEnvValue,
+                Password = passwordEnvValue,
+                Port = int.Parse(portEnvValue),
             };
         }
     }

@@ -12,18 +12,18 @@
         {
             var section = configuration.GetSection(OptionName);
 
-            var hostnameEnv = section[nameof(HostName)];
-            var usernameEnv = section[nameof(UserName)];
-            var passwordEnv = section[nameof(Password)];
+            var hostnameEnvValue = section[nameof(HostName)];
+            var usernameEnvValue = section[nameof(UserName)];
+            var passwordEnvValue = section[nameof(Password)];
 
-            if (hostnameEnv == null || usernameEnv == null || passwordEnv == null)
+            if (hostnameEnvValue == null || usernameEnvValue == null || passwordEnvValue == null)
                 return default;
 
             return new()
             {
-                HostName = Environment.GetEnvironmentVariable(hostnameEnv) ?? string.Empty,
-                UserName = Environment.GetEnvironmentVariable(usernameEnv) ?? string.Empty,
-                Password = Environment.GetEnvironmentVariable(passwordEnv) ?? string.Empty,
+                HostName = hostnameEnvValue,
+                UserName = usernameEnvValue,
+                Password = passwordEnvValue,
             };
         }
     }

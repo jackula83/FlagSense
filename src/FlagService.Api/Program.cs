@@ -1,4 +1,3 @@
-using FlagService.Api.Entity.Flags;
 using FlagService.Api.Entity.Identity;
 using FlagService.Api.Options;
 using FlagService.Domain.Aggregates.Flags;
@@ -22,6 +21,11 @@ var services = builder.Services;
 builder.Configuration.AddEnvironmentVariables();
 var databaseSection = (DatabaseOptions)builder.Configuration!;
 var rabbitSection = (RabbitOptions)builder.Configuration!;
+
+#if DEBUG
+Console.WriteLine($"RabbitMQ ({rabbitSection.HostName}) initialised for: {rabbitSection.UserName}/{rabbitSection.Password}");
+Console.WriteLine($"Database ({databaseSection.Server},{databaseSection.Port}, {databaseSection.Name}) initialised");
+#endif
 
 // Configure database context
 services.AddDbContext<FsSqlServerContext>(

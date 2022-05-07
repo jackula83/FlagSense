@@ -10,4 +10,4 @@ COPY . ./
 RUN dotnet restore FlagSense.sln
 
 # Run on watch
-ENTRYPOINT ["dotnet", "watch", "run", "--project", "FlagService.Api/FlagService.Api.csproj"]
+ENTRYPOINT ["dotnet", "watch", "run", "--project", "src/FlagService.Api/FlagService.Api.csproj"]
