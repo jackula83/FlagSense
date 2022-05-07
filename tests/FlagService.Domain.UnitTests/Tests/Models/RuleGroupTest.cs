@@ -1,5 +1,4 @@
-﻿using FlagSense.FlagService.Domain.Entities;
-using FlagService.Domain.Aggregates;
+﻿using FlagService.Domain.Aggregates;
 using FlagService.Domain.Aggregates.Rules;
 using Framework2.Core.Extensions;
 using System.Collections.Generic;

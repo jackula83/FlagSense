@@ -1,12 +1,11 @@
-﻿using FlagSense.FlagService.Domain.Entities;
-using FlagService.Domain.Interfaces;
+﻿using FlagService.Domain.Interfaces;
 using FlagService.Infra.Data.Abstracts;
 using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
-namespace FlagService.Domain.Aggregates.Environment
+namespace FlagService.Domain.Aggregates
 {
     public class Env : FsDataObject, IColourCoding, IAggregateRoot
     {

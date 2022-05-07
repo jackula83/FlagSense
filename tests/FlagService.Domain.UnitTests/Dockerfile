@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /app
 
 # Copy project file and install dependencies
-COPY "FlagSense.FlagService.UnitTests.csproj" ./
+COPY "FlagService.Domain.UnitTests.csproj" ./
 RUN dotnet restore
 
 # Copy everything else

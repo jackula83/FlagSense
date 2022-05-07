@@ -1,4 +1,4 @@
-﻿namespace FlagSense.FlagService.Api.Options
+﻿namespace FlagService.Api.Options
 {
     internal class DatabaseOptions
     {

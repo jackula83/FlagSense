@@ -1,9 +1,10 @@
-﻿using FlagService.Infra.Data.Abstracts;
+﻿using FlagService.Domain.Aggregates.Users;
+using FlagService.Infra.Data.Abstracts;
 using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates
 {
     /// <summary>
     /// Encapsulates user information for use in flag rules
@@ -13,7 +14,7 @@ namespace FlagSense.FlagService.Domain.Entities
         public static string AnonymousPropertyKey = "IsAnonymous";
         private static bool DefaultAnonymousSetting = true;
 
-        public List<UserProperty> Properties { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString())};
+        public List<UserProperty> Properties { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString()) };
 
         /// <summary>
         /// Anonymous users, public users, unregistered users
@@ -24,7 +25,7 @@ namespace FlagSense.FlagService.Domain.Entities
         {
             get
             {
-                var anonymousProp = this.Properties.FirstOrDefault(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
+                var anonymousProp = Properties.FirstOrDefault(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
                 if (anonymousProp == default)
                     return DefaultAnonymousSetting;
 
@@ -36,8 +37,8 @@ namespace FlagSense.FlagService.Domain.Entities
             }
             set
             {
-                this.Properties.RemoveAll(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
-                this.Properties.Add(new(AnonymousPropertyKey, value.ToString()));
+                Properties.RemoveAll(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
+                Properties.Add(new(AnonymousPropertyKey, value.ToString()));
             }
         }
 

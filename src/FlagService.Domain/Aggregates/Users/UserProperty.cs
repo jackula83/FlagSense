@@ -1,9 +1,8 @@
 ﻿using FlagService.Infra.Data.Abstracts;
-using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates.Users
 {
     public class UserProperty : FsDataObject
     {
@@ -21,8 +20,8 @@ namespace FlagSense.FlagService.Domain.Entities
 
         public UserProperty(string key, string value)
         {
-            this.Key = key;
-            this.Value = value;
+            Key = key;
+            Value = value;
         }
 
         public override void SetupEntity(ModelBuilder builder)

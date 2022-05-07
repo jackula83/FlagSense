@@ -1,6 +1,4 @@
-﻿using FlagSense.FlagService.Domain.Entities;
-
-namespace FlagService.Domain.Aggregates.Rules
+﻿namespace FlagService.Domain.Aggregates.Rules
 {
     public interface IUserEvaluator
     {

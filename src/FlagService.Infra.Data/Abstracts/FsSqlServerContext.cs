@@ -1,8 +1,7 @@
-﻿using FlagService.Infra.Data.Abstracts;
-using Framework2.Infra.Data.Context;
+﻿using Framework2.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlagSense.FlagService.Domain.Data
+namespace FlagService.Infra.Data.Abstracts
 {
     public class FsSqlServerContext : FxSqlServerDbContext
     {

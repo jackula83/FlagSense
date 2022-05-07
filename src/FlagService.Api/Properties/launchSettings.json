@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "FlagSense.FlagService.Api": {
+    "FlagService.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

@@ -1,4 +1,4 @@
-﻿using FlagSense.FlagService.Domain.Entities;
+﻿using FlagService.Domain.Aggregates;
 using Xunit;
 
 namespace FlagSense.FlagService.UnitTests.Domain.Models

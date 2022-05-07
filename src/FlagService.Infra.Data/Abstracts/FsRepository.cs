@@ -2,7 +2,7 @@
 using Framework2.Infra.Data.Entity;
 using Framework2.Infra.Data.Repository;
 
-namespace FlagSense.FlagService.Domain.Data
+namespace FlagService.Infra.Data.Abstracts
 {
     public abstract class FsRepository<TAggregateRoot> : FxRepository<FsSqlServerContext, TAggregateRoot>
        where TAggregateRoot : class, IAggregateRoot
@@ -12,7 +12,7 @@ namespace FlagSense.FlagService.Domain.Data
         /// </summary>
         private readonly AuditOperations _auditOperations;
 
-        protected FsRepository(FsSqlServerContext context, AuditOperations auditOperations) 
+        protected FsRepository(FsSqlServerContext context, AuditOperations auditOperations)
             : base(context)
         {
             _auditOperations = auditOperations;
@@ -30,7 +30,7 @@ namespace FlagSense.FlagService.Domain.Data
 
         public override async Task<TAggregateRoot?> Update(TAggregateRoot entity)
         {
-            var oldEntity = await this.Get(entity.Id);
+            var oldEntity = await Get(entity.Id);
             if (oldEntity == default)
                 return default;
 

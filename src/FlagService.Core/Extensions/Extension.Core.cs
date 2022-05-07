@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace FlagSense.FlagService.Core.Extensions
+namespace FlagService.Core.Extensions
 {
     public static partial class Extension
     {

@@ -1,6 +1,4 @@
-﻿using FlagSense.FlagService.Core.Extensions;
-using FlagService.Domain.Aggregates;
-using FlagService.Domain.Aggregates.Environment;
+﻿using FlagService.Core.Extensions;
 using FlagService.Domain.Aggregates.Rules;
 using FlagService.Domain.Interfaces;
 using FlagService.Domain.Models;
@@ -10,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
-namespace FlagSense.FlagService.Domain.Entities
+namespace FlagService.Domain.Aggregates
 {
     public class Segment : FsDataObject, IRuleTarget, IColourCoding, IAggregateRoot
     {
@@ -35,7 +33,7 @@ namespace FlagSense.FlagService.Domain.Entities
         public override void SetupEntity(ModelBuilder builder)
         {
             var entity = builder.Entity<Segment>();
-            entity.HasMany(e => e.Flags);                
+            entity.HasMany(e => e.Flags);
             entity.HasMany(e => e.RuleGroups);
             entity
                 .HasOne(e => e.Environment)

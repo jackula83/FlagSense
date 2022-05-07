@@ -1,9 +1,8 @@
-using FlagSense.FlagService.Api.Options;
-using FlagSense.FlagService.Domain.Data;
-using FlagSense.FlagService.Domain.Entities;
+using FlagService.Api.Options;
 using FlagService.Domain.Aggregates;
-using FlagService.Domain.Aggregates.Environment;
 using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Aggregates.Users;
+using FlagService.Infra.Data.Abstracts;
 using Microsoft.EntityFrameworkCore;
 
 //Debugger.Break();

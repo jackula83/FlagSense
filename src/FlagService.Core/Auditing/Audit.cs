@@ -1,4 +1,4 @@
-﻿using FlagSense.FlagService.Core.Models;
+﻿using FlagService.Core.Models;
 
 namespace FlagService.Core.Auditing
 {

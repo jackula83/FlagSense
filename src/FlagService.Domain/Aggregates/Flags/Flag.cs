@@ -1,5 +1,4 @@
-﻿using FlagSense.FlagService.Core.Extensions;
-using FlagSense.FlagService.Domain.Entities;
+﻿using FlagService.Core.Extensions;
 using FlagService.Domain.Aggregates.Rules;
 using FlagService.Domain.Models;
 using FlagService.Infra.Data.Abstracts;
