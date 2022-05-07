@@ -33,3 +33,6 @@ services:
       - Database__Username=sa
       - Database__Password=Password1
       - Database__Name=FlagServiceDB
+      - RabbitMQ__HostName=localhost
+      - RabbitMQ__UserName=RabbitMQ_user
+      - RabbitMQ__Password=RabbitMQ_pass

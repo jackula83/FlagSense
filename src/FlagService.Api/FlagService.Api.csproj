@@ -17,13 +17,13 @@
 
   <ItemGroup>
     <Folder Include="Application\" />
-    <Folder Include="Options\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FlagService.Domain\FlagService.Domain.csproj" />
     <ProjectReference Include="..\FlagService.Infra.Data\FlagService.Infra.Data.csproj" />
     <ProjectReference Include="..\Shared\Common\src\Framework2.Application\Framework2.Application.csproj" />
+    <ProjectReference Include="..\Shared\Common\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj" />
   </ItemGroup>
 
 </Project>

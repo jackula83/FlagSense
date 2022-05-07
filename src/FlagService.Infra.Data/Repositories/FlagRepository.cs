@@ -1,6 +1,7 @@
-﻿using FlagService.Core.Auditing;
-using FlagService.Domain.Aggregates;
+﻿using FlagService.Domain.Aggregates;
 using FlagService.Domain.Aggregates.Flags;
+using FlagService.Domain.Auditing;
+using FlagService.Domain.Contexts;
 using FlagService.Infra.Data.Abstracts;
 
 namespace FlagService.Infra.Data.Repositories
