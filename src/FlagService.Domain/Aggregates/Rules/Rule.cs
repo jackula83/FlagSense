@@ -1,31 +1,24 @@
 ﻿using FlagService.Infra.Data.Abstracts;
+using FlagService.Infra.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace FlagService.Domain.Aggregates.Rules
 {
-    public enum FlagRuleType : int
-    {
-        INVALID,
-        ONE_OF,
-        STARTS_WITH,
-        REGEX
-    }
-
-    public class Rule : FsDataObject, IUserEvaluator
+    public class Rule : FsDataObject, IUserEvaluator, IRule
     {
         #region EF Relationships
         public int RuleGroupId { get; set; }
-        public RuleGroup? RuleGroup { get; set; }
+        public IRuleGroup? RuleGroup { get; set; }
         #endregion
 
         [StringLength(0x200)]
         public string Key { get; set; } = string.Empty;
-        public List<Condition> Conditions { get; set; } = new();
+        public List<ICondition> Conditions { get; set; } = new();
         public FlagRuleType RuleType { get; set; } = FlagRuleType.INVALID;
 
-        public bool EvalulateUserFlags(User user)
+        public bool EvalulateUserFlags(IUser user)
         {
             if (string.IsNullOrWhiteSpace(Key))
                 return false;
@@ -61,7 +54,7 @@ namespace FlagService.Domain.Aggregates.Rules
             var entity = builder.Entity<Rule>();
             entity
                 .HasOne(x => x.RuleGroup)
-                .WithMany(g => g.Rules)
+                .WithMany(g => g.Rules.Cast<Rule>())
                 .HasForeignKey(nameof(RuleGroupId));
         }
     }

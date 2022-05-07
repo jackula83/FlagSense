@@ -1,4 +1,5 @@
-﻿using FlagService.Domain.Models;
+﻿using FlagService.Core.Models;
+using FlagService.Infra.Data.Interfaces;
 
 namespace FlagService.Domain.Aggregates.Rules
 {
@@ -17,6 +18,6 @@ namespace FlagService.Domain.Aggregates.Rules
         /// <summary>
         /// List of rules associated with this flag
         /// </summary>
-        List<RuleGroup> RuleGroups { get; set; }
+        List<IRuleGroup> RuleGroups { get; set; }
     }
 }

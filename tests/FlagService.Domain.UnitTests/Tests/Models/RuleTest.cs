@@ -1,5 +1,7 @@
 ﻿using FlagService.Domain.Aggregates;
 using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Aggregates.Users;
+using FlagService.Infra.Data.Interfaces;
 using Framework2.Core.Extensions;
 using System.Collections.Generic;
 using Xunit;
@@ -26,7 +28,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "a"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "a"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
                     .Tap(x => x.Key = "username")
@@ -36,7 +38,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "a"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "a"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
                     .Tap(x => x.Key = "username")
@@ -46,7 +48,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "a"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "a"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
                     .Tap(x => x.Key = "country")
@@ -60,7 +62,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
                     .Tap(x => x.Key = "username")
@@ -70,7 +72,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
                     .Tap(x => x.Key = "username")
@@ -80,7 +82,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
                     .Tap(x => x.Key = "username")
@@ -94,7 +96,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula@nospam.com"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula@nospam.com"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
@@ -104,7 +106,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
@@ -114,7 +116,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula@nospam.com"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula@nospam.com"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")
@@ -124,7 +126,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             yield return new object[]
             {
                 new User()
-                    .Tap(x => x.Properties.Add(new("username", "jackula@nospam.com"))),
+                    .Tap(x => x.Properties.Add(new UserProperty("username", "jackula@nospam.com"))),
                 new Rule()
                     .Tap(x => x.RuleType = FlagRuleType.REGEX)
                     .Tap(x => x.Key = "username")

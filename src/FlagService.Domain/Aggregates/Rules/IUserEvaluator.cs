@@ -1,7 +1,9 @@
-﻿namespace FlagService.Domain.Aggregates.Rules
+﻿using FlagService.Infra.Data.Interfaces;
+
+namespace FlagService.Domain.Aggregates.Rules
 {
     public interface IUserEvaluator
     {
-        bool EvalulateUserFlags(User user);
+        bool EvalulateUserFlags(IUser user);
     }
 }

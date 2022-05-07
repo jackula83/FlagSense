@@ -1,20 +1,20 @@
 ﻿using FlagService.Core.Extensions;
+using FlagService.Core.Models;
 using FlagService.Domain.Aggregates.Rules;
 using FlagService.Domain.Interfaces;
-using FlagService.Domain.Models;
 using FlagService.Infra.Data.Abstracts;
-using Framework2.Infra.Data.Entity;
+using FlagService.Infra.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
 namespace FlagService.Domain.Aggregates
 {
-    public class Segment : FsDataObject, IRuleTarget, IColourCoding, IAggregateRoot
+    public class Segment : FsDataObject, IRuleTarget, IColourCoding, ISegment
     {
         #region EF Relationships
         public int EnvironmentId { get; set; }
-        public Env? Environment { get; set; }
+        public IEnv? Environment { get; set; }
         #endregion
 
         [StringLength(0x200)]
@@ -25,10 +25,10 @@ namespace FlagService.Domain.Aggregates
         public static int DefaultColour = Color.DeepSkyBlue.ToArgb();
         public int ColourCoding { get; set; } = DefaultColour;
 
-        public List<Flag> Flags { get; set; } = new();
+        public List<IFlag> Flags { get; set; } = new();
         public bool IsEnabled { get; set; } = false;
         public ServeValue DefaultServeValue { get; set; } = new();
-        public List<RuleGroup> RuleGroups { get; set; } = new();
+        public List<IRuleGroup> RuleGroups { get; set; } = new();
 
         public override void SetupEntity(ModelBuilder builder)
         {
@@ -37,7 +37,7 @@ namespace FlagService.Domain.Aggregates
             entity.HasMany(e => e.RuleGroups);
             entity
                 .HasOne(e => e.Environment)
-                .WithMany(v => v.Segments)
+                .WithMany(v => v.Segments.Cast<Segment>())
                 .HasForeignKey(nameof(EnvironmentId));
             entity
                 .Property(e => e.DefaultServeValue)

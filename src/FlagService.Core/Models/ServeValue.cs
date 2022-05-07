@@ -1,6 +1,4 @@
-﻿using FlagService.Core.Models;
-
-namespace FlagService.Domain.Models
+﻿namespace FlagService.Core.Models
 {
     public class ServeValue : FsModel
     {

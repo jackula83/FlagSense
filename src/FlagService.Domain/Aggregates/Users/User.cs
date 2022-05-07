@@ -1,6 +1,6 @@
 ﻿using FlagService.Domain.Aggregates.Users;
 using FlagService.Infra.Data.Abstracts;
-using Framework2.Infra.Data.Entity;
+using FlagService.Infra.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,12 +9,12 @@ namespace FlagService.Domain.Aggregates
     /// <summary>
     /// Encapsulates user information for use in flag rules
     /// </summary>
-    public class User : FsDataObject, IAggregateRoot
+    public class User : FsDataObject, IUser
     {
         public static string AnonymousPropertyKey = "IsAnonymous";
-        private static bool DefaultAnonymousSetting = true;
+        private static readonly bool DefaultAnonymousSetting = true;
 
-        public List<UserProperty> Properties { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString()) };
+        public List<IUserProperty> Properties { get; set; } = new() { new UserProperty(AnonymousPropertyKey, DefaultAnonymousSetting.ToString()) };
 
         /// <summary>
         /// Anonymous users, public users, unregistered users
@@ -38,7 +38,7 @@ namespace FlagService.Domain.Aggregates
             set
             {
                 Properties.RemoveAll(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
-                Properties.Add(new(AnonymousPropertyKey, value.ToString()));
+                Properties.Add(new UserProperty(AnonymousPropertyKey, value.ToString()));
             }
         }
 
@@ -47,7 +47,7 @@ namespace FlagService.Domain.Aggregates
             var entity = builder.Entity<User>();
             entity
                 .HasMany(e => e.Properties)
-                .WithOne(e => e.User);
+                .WithOne(e => e.User as User);
         }
     }
 }

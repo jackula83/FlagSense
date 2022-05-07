@@ -1,14 +1,15 @@
 ﻿using FlagService.Infra.Data.Abstracts;
+using FlagService.Infra.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlagService.Domain.Aggregates.Users
 {
-    public class UserProperty : FsDataObject
+    public class UserProperty : FsDataObject, IUserProperty
     {
         #region EF Relationships
         public int UserId { get; set; }
-        public User? User { get; set; }
+        public IUser? User { get; set; }
         #endregion
 
         [StringLength(0x200)]
@@ -29,7 +30,7 @@ namespace FlagService.Domain.Aggregates.Users
             var entity = builder.Entity<UserProperty>();
             entity
                 .HasOne(x => x.User)
-                .WithMany(u => u.Properties)
+                .WithMany(u => u.Properties.Cast<UserProperty>())
                 .HasForeignKey(nameof(UserId));
         }
     }

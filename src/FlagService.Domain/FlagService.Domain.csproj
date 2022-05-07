@@ -25,6 +25,11 @@
     <ProjectReference Include="..\FlagService.Core\FlagService.Core.csproj" />
     <ProjectReference Include="..\FlagService.Infra.Data\FlagService.Infra.Data.csproj" />
     <ProjectReference Include="..\Shared\Common\src\Framework2.Domain\Framework2.Domain.csproj" />
+    <ProjectReference Include="..\Shared\Common\src\Framework2.Infra.Data\Framework2.Infra.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstracts\" />
   </ItemGroup>
 
 </Project>

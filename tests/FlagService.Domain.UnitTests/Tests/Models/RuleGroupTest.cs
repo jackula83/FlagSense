@@ -1,5 +1,7 @@
 ﻿using FlagService.Domain.Aggregates;
 using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Aggregates.Users;
+using FlagService.Infra.Data.Interfaces;
 using Framework2.Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +16,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         public void Eval_WhenAllRulesEvalTrue_WillEvalTrue()
         {
             // arrange
-            var user = new User().Tap(x => x.Properties.Add(new("username", "jackula@nospam.com")));
+            var user = new User().Tap(x => x.Properties.Add(new UserProperty("username", "jackula@nospam.com")));
             var ruleGroup = new RuleGroup().Tap(x => x.Rules.AddRange(GetTrueRules()));
 
             // act
@@ -28,7 +30,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         public void Eval_WhenAllRulesEvalFalse_WillEvalFalse()
         {
             // arrange
-            var user = new User().Tap(x => x.Properties.Add(new("username", "jackula@nospam.com")));
+            var user = new User().Tap(x => x.Properties.Add(new UserProperty("username", "jackula@nospam.com")));
             var ruleGroup = new RuleGroup().Tap(x => x.Rules.AddRange(GetFalseRules()));
 
             // act
@@ -42,7 +44,7 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
         public void Eval_WhenOneRuleEvalFalse_WillEvalFalse()
         {
             // arrange
-            var user = new User().Tap(x => x.Properties.Add(new("username", "jackula@nospam.com")));
+            var user = new User().Tap(x => x.Properties.Add(new UserProperty("username", "jackula@nospam.com")));
             var ruleGroup = new RuleGroup()
                 .Tap(x => x.Rules.AddRange(GetTrueRules()))
                 .Tap(x => x.Rules.Add(GetFalseRules().First()));
@@ -59,15 +61,15 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             var rule1 = new Rule()
                 .Tap(x => x.Key = "username")
                 .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
-                .Tap(x => x.Conditions.Add("jackula@nospam.com"));
+                .Tap(x => x.Conditions.Add((Condition)"jackula@nospam.com"));
             var rule2 = new Rule()
                 .Tap(x => x.Key = "username")
                 .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
-                .Tap(x => x.Conditions.Add("jack"));
+                .Tap(x => x.Conditions.Add((Condition)"jack"));
             var rule3 = new Rule()
                 .Tap(x => x.Key = "username")
                 .Tap(x => x.RuleType = FlagRuleType.REGEX)
-                .Tap(x => x.Conditions.Add(@"([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)"));
+                .Tap(x => x.Conditions.Add((Condition)@"([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)"));
             return new() { rule1, rule2, rule3 };
         }
 
@@ -76,15 +78,15 @@ namespace FlagSense.FlagService.UnitTests.Domain.Models
             var rule1 = new Rule()
                 .Tap(x => x.Key = "username")
                 .Tap(x => x.RuleType = FlagRuleType.ONE_OF)
-                .Tap(x => x.Conditions.Add("jackula"));
+                .Tap(x => x.Conditions.Add((Condition)"jackula"));
             var rule2 = new Rule()
                 .Tap(x => x.Key = "username")
                 .Tap(x => x.RuleType = FlagRuleType.STARTS_WITH)
-                .Tap(x => x.Conditions.Add("nospam"));
+                .Tap(x => x.Conditions.Add((Condition)"nospam"));
             var rule3 = new Rule()
                 .Tap(x => x.Key = "username")
                 .Tap(x => x.RuleType = FlagRuleType.REGEX)
-                .Tap(x => x.Conditions.Add(@"["));
+                .Tap(x => x.Conditions.Add((Condition)@"["));
             return new() { rule1, rule2, rule3 };
         }
     }

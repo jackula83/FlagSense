@@ -1,15 +1,16 @@
 ﻿using FlagService.Infra.Data.Abstracts;
+using FlagService.Infra.Data.Interfaces;
 using Framework2.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace FlagService.Domain.Aggregates.Rules
 {
-    public class Condition : FsDataObject
+    public class Condition : FsDataObject, ICondition
     {
         #region EF Relationships
         public int RuleId { get; set; }
-        public Rule? Rule { get; set; }
+        public IRule? Rule { get; set; }
         #endregion
 
         [Required]
@@ -24,7 +25,7 @@ namespace FlagService.Domain.Aggregates.Rules
             var entity = builder.Entity<Condition>();
             entity
                 .HasOne(x => x.Rule)
-                .WithMany(r => r.Conditions)
+                .WithMany(r => r.Conditions.Cast<Condition>())
                 .HasForeignKey(nameof(RuleId));
         }
     }
