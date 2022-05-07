@@ -1,5 +1,5 @@
-﻿using FlagService.Domain.Interfaces;
-using FlagService.Infra.Data.Abstracts;
+﻿using FlagService.Core.Models;
+using FlagService.Domain.Interfaces;
 using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;

@@ -1,7 +1,7 @@
 ﻿using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlagService.Infra.Data.Abstracts
+namespace FlagService.Core.Models
 {
     public abstract class FsDataObject : FxDataObject
     {

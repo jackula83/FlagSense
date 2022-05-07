@@ -1,4 +1,5 @@
-﻿using Framework2.Infra.Data.Context;
+﻿using FlagService.Core.Models;
+using Framework2.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlagService.Infra.Data.Abstracts

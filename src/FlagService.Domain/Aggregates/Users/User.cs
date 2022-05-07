@@ -1,5 +1,5 @@
-﻿using FlagService.Domain.Aggregates.Users;
-using FlagService.Infra.Data.Abstracts;
+﻿using FlagService.Core.Models;
+using FlagService.Domain.Aggregates.Users;
 using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
