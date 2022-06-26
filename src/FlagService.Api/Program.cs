@@ -11,6 +11,7 @@ using Framework2.Infra.MQ.RabbitMQ.Connection;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Text.Json;
 
 //Debugger.Break();
 
@@ -47,7 +48,7 @@ services.AddTransient<AuditOperations>();
 services.AddTransient<IUserIdentity, UserIdentity>();
 services.AddTransient<IFlagRepository, FlagRepository>();
 
-services.AddControllers();
+services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 services.AddEndpointsApiExplorer();

@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Net;
 using System.Net.Mime;
 
@@ -24,7 +25,13 @@ namespace Framework2.Application.Core.Controllers
             => Ok(this.GetType().Name + " is working!");
 
         protected ContentResult JsonContent(object content)
-            => Content(JsonConvert.SerializeObject(content), MediaTypeNames.Application.Json);
+            => Content(JsonConvert.SerializeObject(
+                content,
+                new JsonSerializerSettings 
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    DateFormatString = "yyyy-MM-ddTHH:mm:ss.fffZ"
+                }), MediaTypeNames.Application.Json);
 
         protected async Task<IActionResult> Send<TRequest>(TRequest request)
             where TRequest : FxMediatorRequest, new()
