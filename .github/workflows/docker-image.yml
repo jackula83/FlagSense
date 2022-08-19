@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile.dev --t jackula83/flag-service-dev:latest --t jackula83/flag-service-dev:$GITHUB_SHA
+        echo $DOCKERHUB_PASSWORD | docker login -u $DOCKER_USER --password-stdin docker.io
+        docker push jackula83/flag-service-dev:latest
+        docker push jackula83/flag-service-dev:$GITHUB_SHA
