@@ -20,10 +20,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: login
+    environment: public
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/build-push-action@v2
       - name: Build and push the Docker image
-        run: |
-          docker build -f ./Dockerfile.dev -t jackula83/flag-service-dev:latest -t jackula83/flag-service-dev:${GITHUB_SHA} .
-          docker push jackula83/flag-service-dev:latest
-          docker push jackula83/flag-service-dev:${GITHUB_SHA}
+        with:
+          context: .
+          file: ./Dockerfile.dev
+          push: true
+          tags: ${{ secrets.DOCKER_USER }}/flag-service-dev:latest
