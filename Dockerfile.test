@@ -10,7 +10,4 @@ RUN dotnet restore FlagSense.sln
 
 # Run tests
 RUN echo "Running tests..."
-RUN dotnet test
-
-# Run tests on run
-ENTRYPOINT [ "dotnet", "test" ]
+RUN dotnet test --filter FullyQualifiedName\!~IntegrationTests
