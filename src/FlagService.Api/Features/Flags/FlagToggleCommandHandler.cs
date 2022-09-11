@@ -1,10 +1,13 @@
 ﻿using FlagService.Domain.Aggregates.Flags;
 using Framework2.Core.Extensions;
 using Framework2.Domain.Core.Handlers;
+using MediatR;
 
 namespace FlagService.Api.Features.Flags
 {
-    public class FlagToggleCommandHandler : FxCommandHandler<FlagToggleCommandRequest, FlagToggleCommandResponse>
+    public class FlagToggleCommandHandler : 
+        FxCommandHandler<FlagToggleCommandRequest, FlagToggleCommandResponse>, 
+        IRequestHandler<FlagToggleCommandRequest, FlagToggleCommandResponse>
     {
         private readonly IFlagRepository _flagRepository;
 
