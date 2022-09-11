@@ -44,4 +44,4 @@ jobs:
           context: .
           file: Dockerfile.dev
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/flag-service-dev:latest
+          tags: ${{ secrets.DOCKER_USER }}/flag-service-dev:latest,${{ secrets.DOCKER_USER }}/flag-service-dev:${{ github.sha }}
