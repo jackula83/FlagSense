@@ -17,9 +17,12 @@ namespace FlagService.Domain.Contexts
         public DbSet<User> User { get; set; }
         public DbSet<UserProperty> UserProperty { get; set; }
 
+
+#pragma warning disable 8618
         public FsSqlServerContext(DbContextOptions options) : base(options)
         {
         }
+#pragma warning restore
 
         protected override void Setup<TEntityType>(ModelBuilder builder)
         {
