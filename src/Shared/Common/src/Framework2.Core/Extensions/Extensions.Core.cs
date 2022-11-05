@@ -17,5 +17,8 @@ namespace Framework2.Core.Extensions
             var serial = JsonConvert.SerializeObject(@object);
             return JsonConvert.DeserializeObject<T>(serial)!;
         }
+
+        public static string MakeMessage(this Exception ex, string correlationId)
+            => $"CorrelationId [`{correlationId}`]: {ex.InnerException?.Message ?? ex.Message}";
     }
 }

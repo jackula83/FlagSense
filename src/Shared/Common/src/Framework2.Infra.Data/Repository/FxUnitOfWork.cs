@@ -1,4 +1,6 @@
-﻿using Framework2.Infra.Data.Context;
+﻿using Framework2.Core.Extensions;
+using Framework2.Infra.Data.Context;
+using Microsoft.Extensions.Logging;
 
 namespace Framework2.Infra.Data.Repository
 {
@@ -6,11 +8,17 @@ namespace Framework2.Infra.Data.Repository
         where TContext : FxDbContext
     {
         protected readonly TContext _context;
+        protected readonly string _correlationId;
         private readonly object _scope = new();
         private bool _disposed = false;
+        private ILogger<FxUnitOfWork<TContext>> _logger;
 
-        public FxUnitOfWork(TContext context)
-            => _context = context;
+        public FxUnitOfWork(ILogger<FxUnitOfWork<TContext>> logger, TContext context, string correlationId)
+        {
+            _logger = logger;
+            _context = context;
+            _correlationId = correlationId;
+        }
 
         public virtual async Task Save()
             => await _context.SaveChangesAsync();
@@ -24,6 +32,20 @@ namespace Framework2.Infra.Data.Repository
                 _disposed = true;
             }
             GC.SuppressFinalize(this);
+        }
+
+        protected virtual async Task<TResult?> Run<TResult>(Func<Task<TResult>> func)
+        {
+            try
+            {
+                return await func();
+            } 
+            catch (Exception e)
+            {
+                _logger.LogError(e.MakeMessage(_correlationId));
+            }
+
+            return default;
         }
     }
 }
