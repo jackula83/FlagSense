@@ -34,7 +34,7 @@ namespace Framework2.Infra.Data.Repository
             GC.SuppressFinalize(this);
         }
 
-        protected virtual async Task<TResult?> Run<TResult>(Func<Task<TResult>> func)
+        protected virtual async Task<TResult?> RunOperation<TResult>(Func<Task<TResult>> func)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace Framework2.Infra.Data.Repository
             } 
             catch (Exception e)
             {
-                _logger.LogError(e.MakeMessage(_correlationId));
+                _logger.LogError(e.CreateCorrelatedMessage(_correlationId));
             }
 
             return default;

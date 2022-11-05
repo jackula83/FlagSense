@@ -18,7 +18,7 @@ namespace Framework2.Core.Extensions
             return JsonConvert.DeserializeObject<T>(serial)!;
         }
 
-        public static string MakeMessage(this Exception ex, string correlationId)
+        public static string CreateCorrelatedMessage(this Exception ex, string correlationId)
             => $"CorrelationId [`{correlationId}`]: {ex.InnerException?.Message ?? ex.Message}";
     }
 }
