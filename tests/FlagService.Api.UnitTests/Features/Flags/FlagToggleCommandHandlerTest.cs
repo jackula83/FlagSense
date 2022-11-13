@@ -6,10 +6,8 @@ using FlagService.Domain.Contexts;
 using FlagService.Infra.Data.Repositories;
 using Framework2.Infra.Data.UnitTests.Utilities;
 using Framework2.Infra.MQ.Core;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 

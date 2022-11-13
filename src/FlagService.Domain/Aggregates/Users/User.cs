@@ -14,7 +14,7 @@ namespace FlagService.Domain.Aggregates
         public static string AnonymousPropertyKey = "IsAnonymous";
         private static bool DefaultAnonymousSetting = true;
 
-        public List<UserProperty> Properties { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString()) };
+        public List<UserAttribute> Attributes { get; set; } = new() { new(AnonymousPropertyKey, DefaultAnonymousSetting.ToString()) };
 
         /// <summary>
         /// Anonymous users, public users, unregistered users
@@ -25,7 +25,7 @@ namespace FlagService.Domain.Aggregates
         {
             get
             {
-                var anonymousProp = Properties.FirstOrDefault(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
+                var anonymousProp = Attributes.FirstOrDefault(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
                 if (anonymousProp == default)
                     return DefaultAnonymousSetting;
 
@@ -37,8 +37,8 @@ namespace FlagService.Domain.Aggregates
             }
             set
             {
-                Properties.RemoveAll(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
-                Properties.Add(new(AnonymousPropertyKey, value.ToString()));
+                Attributes.RemoveAll(x => string.Compare(x.Key, AnonymousPropertyKey, true) == 0);
+                Attributes.Add(new(AnonymousPropertyKey, value.ToString()));
             }
         }
 
@@ -46,8 +46,11 @@ namespace FlagService.Domain.Aggregates
         {
             var entity = builder.Entity<User>();
             entity
-                .HasMany(e => e.Properties)
+                .HasMany(e => e.Attributes)
                 .WithOne(e => e.User);
         }
+
+        public UserAttribute? GetUserAttribute(string key)
+            => this.Attributes.FirstOrDefault(x => string.Compare(x.Key, key, true) == 0);
     }
 }

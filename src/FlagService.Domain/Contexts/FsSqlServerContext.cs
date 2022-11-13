@@ -1,7 +1,7 @@
 ﻿using FlagService.Core.Models;
 using FlagService.Domain.Aggregates;
-using FlagService.Domain.Aggregates.Rules;
 using FlagService.Domain.Aggregates.Users;
+using FlagService.Domain.Entities.Rules;
 using Framework2.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,9 +13,8 @@ namespace FlagService.Domain.Contexts
         public DbSet<Segment> Segment { get; set; }
         public DbSet<Flag> Flag { get; set; }
         public DbSet<Rule> Rule { get; set; }
-        public DbSet<RuleGroup> RuleGroup { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<UserProperty> UserProperty { get; set; }
+        public DbSet<UserAttribute> UserProperty { get; set; }
 
 
 #pragma warning disable 8618

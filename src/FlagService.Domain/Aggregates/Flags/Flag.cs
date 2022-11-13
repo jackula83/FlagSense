@@ -1,6 +1,6 @@
 ﻿using FlagService.Core.Extensions;
 using FlagService.Core.Models;
-using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Entities.Rules;
 using FlagService.Domain.Models;
 using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FlagService.Domain.Aggregates
 {
-    public class Flag : FsDataObject, IRuleTarget, IAggregateRoot
+    public class Flag : FsDataObject, IAggregateRoot
     {
         #region EF Relationships
         public int? SegmentId { get; set; }
@@ -24,13 +24,13 @@ namespace FlagService.Domain.Aggregates
 
         public bool IsEnabled { get; set; } = false;
         public ServeValue DefaultServeValue { get; set; } = new();
-        public List<RuleGroup> RuleGroups { get; set; } = new();
+        public List<Rule> Rules { get; set; } = new();
 
         public override void SetupEntity(ModelBuilder builder)
         {
             var entity = builder.Entity<Flag>();
             entity
-                .HasMany(e => e.RuleGroups);
+                .HasMany(e => e.Rules);
             entity
                 .HasOne(e => e.Segment)
                 .WithMany(s => s.Flags)

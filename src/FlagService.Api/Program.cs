@@ -56,6 +56,12 @@ services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// migrate database
+using var scope = app.Services.CreateScope();
+var svc = scope.ServiceProvider;
+var db = svc.GetRequiredService<FsSqlServerContext>().Database;
+db.Migrate();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

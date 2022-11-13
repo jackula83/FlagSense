@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FlagService.Domain.Aggregates.Users
 {
-    public class UserProperty : FsDataObject
+    public class UserAttribute : FsDataObject
     {
         #region EF Relationships
         public int UserId { get; set; }
@@ -16,9 +16,9 @@ namespace FlagService.Domain.Aggregates.Users
         [MaxLength]
         public string Value { get; set; } = string.Empty;
 
-        public UserProperty() { }
+        public UserAttribute() { }
 
-        public UserProperty(string key, string value)
+        public UserAttribute(string key, string value)
         {
             Key = key;
             Value = value;
@@ -26,10 +26,10 @@ namespace FlagService.Domain.Aggregates.Users
 
         public override void SetupEntity(ModelBuilder builder)
         {
-            var entity = builder.Entity<UserProperty>();
+            var entity = builder.Entity<UserAttribute>();
             entity
                 .HasOne(x => x.User)
-                .WithMany(u => u.Properties)
+                .WithMany(u => u.Attributes)
                 .HasForeignKey(nameof(UserId));
         }
     }

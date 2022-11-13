@@ -3,14 +3,29 @@ using Framework2.Core.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace FlagService.Domain.Aggregates.Rules
+namespace FlagService.Domain.Entities.Rules
 {
+    public enum ConditionOperator : int
+    {
+        INVALID = 0,
+        ONE_OF,
+        STARTS_WITH,
+        REGEX
+    }
+
     public class Condition : FsDataObject
     {
         #region EF Relationships
         public int RuleId { get; set; }
         public Rule? Rule { get; set; }
         #endregion
+
+        [Required]
+        [StringLength(0x200)]
+        public string AttributeName { get; set; } = string.Empty;
+
+        [Required]
+        public ConditionOperator Operator { get; set; }
 
         [Required]
         [StringLength(0x10000)]

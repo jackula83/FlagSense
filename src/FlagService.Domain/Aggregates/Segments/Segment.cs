@@ -1,6 +1,6 @@
 ﻿using FlagService.Core.Extensions;
 using FlagService.Core.Models;
-using FlagService.Domain.Aggregates.Rules;
+using FlagService.Domain.Entities.Rules;
 using FlagService.Domain.Interfaces;
 using FlagService.Domain.Models;
 using Framework2.Infra.Data.Entity;
@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace FlagService.Domain.Aggregates
 {
-    public class Segment : FsDataObject, IRuleTarget, IColourCoding, IAggregateRoot
+    public class Segment : FsDataObject, IColourCoding, IAggregateRoot
     {
         #region EF Relationships
         public int EnvironmentId { get; set; }
@@ -28,13 +28,13 @@ namespace FlagService.Domain.Aggregates
         public List<Flag> Flags { get; set; } = new();
         public bool IsEnabled { get; set; } = false;
         public ServeValue DefaultServeValue { get; set; } = new();
-        public List<RuleGroup> RuleGroups { get; set; } = new();
+        public List<Rule> Rules { get; set; } = new();
 
         public override void SetupEntity(ModelBuilder builder)
         {
             var entity = builder.Entity<Segment>();
             entity.HasMany(e => e.Flags);
-            entity.HasMany(e => e.RuleGroups);
+            entity.HasMany(e => e.Rules);
             entity
                 .HasOne(e => e.Environment)
                 .WithMany(v => v.Segments)
