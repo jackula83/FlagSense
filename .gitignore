@@ -7,7 +7,6 @@ packages
 node_modules
 .vs
 build
-Migrations
 node_modules/**/*
 
 # expo

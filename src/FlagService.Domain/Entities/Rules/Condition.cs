@@ -1,5 +1,6 @@
 ﻿using FlagService.Core.Models;
 using Framework2.Core.Extensions;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,7 +14,7 @@ namespace FlagService.Domain.Entities.Rules
         REGEX
     }
 
-    public class Condition : FsDataObject
+    public class Condition : FsDataObject, IEntity
     {
         #region EF Relationships
         public int RuleId { get; set; }

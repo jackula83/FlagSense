@@ -3,13 +3,14 @@ using FlagService.Core.Models;
 using FlagService.Domain.Aggregates;
 using FlagService.Domain.Aggregates.Users;
 using FlagService.Domain.Models;
+using Framework2.Infra.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace FlagService.Domain.Entities.Rules
 {
-    public class Rule : FsDataObject, IUserEvaluator
+    public class Rule : FsDataObject, IEntity, IUserEvaluator
     {
         #region EF Relationships
         public int FlagId { get; set; }
