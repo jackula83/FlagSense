@@ -25,7 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FlagService.Domain\FlagService.Domain.csproj" />
     <ProjectReference Include="..\FlagService.Infra.Data\FlagService.Infra.Data.csproj" />
-    <ProjectReference Include="..\shared\Framework2\src\Framework2.Application\Framework2.Application.csproj" />
   </ItemGroup>
 
 </Project>
