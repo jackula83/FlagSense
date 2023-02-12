@@ -7,15 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{22DEBC21
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F1ADE28B-543E-4E23-845A-0C63F415E415}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Application", "src\Shared\Common\src\Framework2.Application\Framework2.Application.csproj", "{84D28109-BF9B-4A6D-BC22-717F8F8E9835}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Application", "src\shared\Framework2\src\Framework2.Application\Framework2.Application.csproj", "{84D28109-BF9B-4A6D-BC22-717F8F8E9835}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Core", "src\Shared\Common\src\Framework2.Core\Framework2.Core.csproj", "{381FDA16-FA68-4EE4-B59F-13C259DB5731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Core", "src\shared\Framework2\src\Framework2.Core\Framework2.Core.csproj", "{381FDA16-FA68-4EE4-B59F-13C259DB5731}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Domain", "src\Shared\Common\src\Framework2.Domain\Framework2.Domain.csproj", "{7AE7BE65-7D20-430E-91D0-D00B39D8F6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Domain", "src\shared\Framework2\src\Framework2.Domain\Framework2.Domain.csproj", "{7AE7BE65-7D20-430E-91D0-D00B39D8F6EA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.Data", "src\Shared\Common\src\Framework2.Infra.Data\Framework2.Infra.Data.csproj", "{86BE3E36-C1FA-435D-B981-A0939AB52EE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.Data", "src\shared\Framework2\src\Framework2.Infra.Data\Framework2.Infra.Data.csproj", "{86BE3E36-C1FA-435D-B981-A0939AB52EE9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.MQ", "src\Shared\Common\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj", "{EBB61C84-4D70-422A-91E3-A4B4918B802F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.MQ", "src\shared\Framework2\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj", "{EBB61C84-4D70-422A-91E3-A4B4918B802F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlagService.Domain.UnitTests", "tests\FlagService.Domain.UnitTests\FlagService.Domain.UnitTests.csproj", "{38260D8F-DF5B-484D-AD12-514242C2859A}"
 EndProject
@@ -31,17 +31,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagService.Api.UnitTests",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{489936AD-A8AA-45DC-96CC-EA4F9D7BFE61}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.Data.UnitTests", "src\Shared\Common\tests\Framework2.Infra.Data.UnitTests\Framework2.Infra.Data.UnitTests.csproj", "{643E2FDA-64C4-40CB-8643-184B0F047A8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.Data.UnitTests", "src\shared\Framework2\tests\Framework2.Infra.Data.UnitTests\Framework2.Infra.Data.UnitTests.csproj", "{643E2FDA-64C4-40CB-8643-184B0F047A8F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Application.UnitTests", "src\Shared\Common\tests\Framework2.Application.UnitTests\Framework2.Application.UnitTests.csproj", "{8BE80AC3-3976-4DE5-B958-71FBFC2EF2ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Application.UnitTests", "src\shared\Framework2\tests\Framework2.Application.UnitTests\Framework2.Application.UnitTests.csproj", "{8BE80AC3-3976-4DE5-B958-71FBFC2EF2ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Domain.UnitTests", "src\Shared\Common\tests\Framework2.Domain.Tests\Framework2.Domain.UnitTests.csproj", "{A4AC464B-5AD9-4021-B86A-90556CAD7604}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Domain.UnitTests", "src\shared\Framework2\tests\Framework2.Domain.Tests\Framework2.Domain.UnitTests.csproj", "{A4AC464B-5AD9-4021-B86A-90556CAD7604}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.IntegrationTests", "src\Shared\Common\tests\Framework2.Infra.IntegrationTests\Framework2.Infra.IntegrationTests.csproj", "{51865754-80EF-40F0-AA8C-FE79FD435FF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.IntegrationTests", "src\shared\Framework2\tests\Framework2.Infra.IntegrationTests\Framework2.Infra.IntegrationTests.csproj", "{51865754-80EF-40F0-AA8C-FE79FD435FF3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.MQ.UnitTests", "src\Shared\Common\tests\Framework2.Infra.MQ.Tests\Framework2.Infra.MQ.UnitTests.csproj", "{FCF3BEFB-54D8-443E-89F1-3AF9D70AE4F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Infra.MQ.UnitTests", "src\shared\Framework2\tests\Framework2.Infra.MQ.Tests\Framework2.Infra.MQ.UnitTests.csproj", "{FCF3BEFB-54D8-443E-89F1-3AF9D70AE4F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Tests.Core", "src\Shared\Common\tests\Framework2.Tests.Core\Framework2.Tests.Core.csproj", "{E8161996-A6BF-4126-9AD7-50B540DEE804}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework2.Tests.Core", "src\shared\Framework2\tests\Framework2.Tests.Core\Framework2.Tests.Core.csproj", "{E8161996-A6BF-4126-9AD7-50B540DEE804}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

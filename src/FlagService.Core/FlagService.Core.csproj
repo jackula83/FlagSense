@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Common\src\Framework2.Application\Framework2.Application.csproj" />
-    <ProjectReference Include="..\Shared\Common\src\Framework2.Domain\Framework2.Domain.csproj" />
-    <ProjectReference Include="..\Shared\Common\src\Framework2.Infra.Data\Framework2.Infra.Data.csproj" />
-    <ProjectReference Include="..\Shared\Common\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj" />
+    <ProjectReference Include="..\shared\Framework2\src\Framework2.Application\Framework2.Application.csproj" />
+    <ProjectReference Include="..\shared\Framework2\src\Framework2.Domain\Framework2.Domain.csproj" />
+    <ProjectReference Include="..\shared\Framework2\src\Framework2.Infra.Data\Framework2.Infra.Data.csproj" />
+    <ProjectReference Include="..\shared\Framework2\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj" />
   </ItemGroup>
 
 </Project>

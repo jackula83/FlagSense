@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\FlagService.Api\FlagService.Api.csproj" />
-    <ProjectReference Include="..\..\src\Shared\Common\tests\Framework2.Infra.Data.UnitTests\Framework2.Infra.Data.UnitTests.csproj" />
+    <ProjectReference Include="..\..\src\shared\Framework2\tests\Framework2.Infra.Data.UnitTests\Framework2.Infra.Data.UnitTests.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,3 +1,9 @@
 [submodule "Shared/Common"]
 	path = Shared/Common
 	url = https://github.com/jackula83/Common
+[submodule "Framework2"]
+	path = Framework2
+	url = https://github.com/jackula83/Framework2
+[submodule "src/shared/Framework2"]
+	path = src/shared/Framework2
+	url = https://github.com/jackula83/Framework2
