@@ -7,10 +7,10 @@ namespace FlagService.Domain.Auditing
 {
     public class AuditOperations
     {
-        private readonly IEventQueue _eventQueue;
+        private readonly IPublishQueue _eventQueue;
         private readonly DbContext _dbContext;
 
-        public AuditOperations(IEventQueue eventQueue, FsSqlServerContext dbContext)
+        public AuditOperations(IPublishQueue eventQueue, FsSqlServerContext dbContext)
         {
             _eventQueue = eventQueue;
             _dbContext = dbContext;

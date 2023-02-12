@@ -9,8 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FlagService.Core\FlagService.Core.csproj" />
     <ProjectReference Include="..\FlagService.Domain\FlagService.Domain.csproj" />
-    <ProjectReference Include="..\Shared\Common\src\Framework2.Infra.Data\Framework2.Infra.Data.csproj" />
-    <ProjectReference Include="..\Shared\Common\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj" />
   </ItemGroup>
 
 </Project>
