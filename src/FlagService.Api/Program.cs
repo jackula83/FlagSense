@@ -6,14 +6,11 @@ using FlagService.Domain.Contexts;
 using FlagService.Infra.Data.Repositories;
 using Framework2.Domain.Core.Identity;
 using Framework2.Infra.MQ.Core;
-using Framework2.Infra.MQ.RabbitMQ;
-using Framework2.Infra.MQ.RabbitMQ.Connection;
+using Framework2.Infra.MQ.DaprMQ;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using System.Text.Json;
-
-//Debugger.Break();
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -36,14 +33,7 @@ services.AddDbContext<FsSqlServerContext>(
 // Configure DI
 services.AddMediatR(Assembly.GetExecutingAssembly());
 services.AddLogging();
-services.AddSingleton<IEventQueue, RabbitQueue>();
-services.AddTransient(_ => new ConnectionFactoryConfig
-{
-    HostName = rabbitSection.HostName,
-    UserName = rabbitSection.UserName,
-    Password = rabbitSection.Password
-});
-services.AddTransient<IConnectionFactoryCreator, ConnectionFactoryCreator>();
+services.AddSingleton<IPublishQueue, DaprQueue>();
 services.AddTransient<AuditOperations>();
 services.AddTransient<IUserIdentity, UserIdentity>();
 services.AddTransient<IFlagRepository, FlagRepository>();
