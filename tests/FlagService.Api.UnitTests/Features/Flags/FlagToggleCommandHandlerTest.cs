@@ -1,8 +1,8 @@
-﻿using FlagService.Api.Features.Flags;
-using FlagService.Domain.Aggregates;
+﻿using FlagService.Domain.Aggregates;
 using FlagService.Domain.Aggregates.Flags;
 using FlagService.Domain.Auditing;
 using FlagService.Domain.Contexts;
+using FlagService.Domain.Features.Flags.Commands;
 using FlagService.Infra.Data.Repositories;
 using Framework2.Infra.Data.UnitTests.Utilities;
 using Framework2.Infra.MQ.Core;
