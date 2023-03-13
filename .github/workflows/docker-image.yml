@@ -46,6 +46,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: Dockerfile.dev
+          file: Dockerfile.dapr.dev
           push: true
           tags: ${{ secrets.DOCKER_USER }}/flag-service-dev:latest,${{ secrets.DOCKER_USER }}/flag-service-dev:${{ github.sha }}
