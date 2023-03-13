@@ -12,16 +12,6 @@ services:
       - ./sql/data:/var/opt/mssql/data
       - ./sql/log:/var/opt/mssql/log
       - ./sql/secrets:/var/opt/mssql/secrets
-  rabbitmq:
-    image: 'rabbitmq:3-management'
-    hostname: 'rabbit-host'
-    # name: 'rabbit-dev-container'
-    environment:
-      - RABBITMQ_DEFAULT_USER=RabbitMQ_user
-      - RABBITMQ_DEFAULT_PASS=RabbitMQ_pass
-    ports:
-      - 5672:5672
-      - 15672:15672
   unit-tests:
     build:
       context: .
@@ -29,11 +19,10 @@ services:
   flag-service-api:
     depends_on:
       - sqlserver
-      - rabbitmq
       - unit-tests
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.dapr.dev
     ports:
       - 5000:5000
     volumes:
