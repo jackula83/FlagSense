@@ -2,6 +2,7 @@
 using Framework2.Core.Extensions;
 using Framework2.Domain.Core.Handlers;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace FlagService.Domain.Features.Flags.Commands
 {
