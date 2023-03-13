@@ -13,4 +13,4 @@ WORKDIR /app
 COPY python .
 RUN pip install requests
 ENTRYPOINT ["dapr"]
-CMD ["run", "--app-id", "flags", "--app-port", "5000", "dotnet", "watch", "run", "--project", "src/FlagService.Api/FlagService.Api.csproj"]
+CMD ["run", "--app-id", "flag-service-api", "--resources-path", "dapr-components" "--app-port", "5000", "dotnet", "watch", "run", "--project", "src/FlagService.Api/FlagService.Api.csproj"]

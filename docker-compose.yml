@@ -37,3 +37,4 @@ services:
       - RabbitMQ__HostName=host.docker.internal
       - RabbitMQ__UserName=RabbitMQ_user
       - RabbitMQ__Password=RabbitMQ_pass
+      - Dapr_Mq_QueueName=flagpubsub
