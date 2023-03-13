@@ -1,4 +1,5 @@
 ﻿using FlagService.Core.Extensions;
+using FlagService.Domain.Features.Flags.Commands;
 using Framework2.Application.Core.Controllers;
 using Framework2.Core.Extensions;
 using MediatR;

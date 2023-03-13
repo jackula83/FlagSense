@@ -26,4 +26,8 @@
     <ProjectReference Include="..\shared\Framework\src\Framework2.Infra.MQ\Framework2.Infra.MQ.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
 </Project>
